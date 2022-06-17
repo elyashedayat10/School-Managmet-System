@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="container-full">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="mr-auto">
+                        <h3 class="page-title">کلاس ها</h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html"><i
+                                            class="mdi mdi-home-outline"></i></a></li>
+                                    <li class="breadcrumb-item" aria-current="page">لیست کلاس ها</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <section class="content">
+                <form method="get" action="">
+                    {% for field in filter.form.visible_fields %}
+                        <label class="col-form-label col-md-2">{{ field.label }}:</label>
+                        {{ field|add_class:'col-sm-3 btn ' }}
+                        {% for error in field.errors %}
+                            <span class="help-block">{{ error }}</span>
+                        {% endfor %}
+
+                    {% endfor %}
+
+                    <input type="submit" class="form-element btn btn-success" value="اعمال فیلتر"/>
+                </form>
+                <br>
+                <br>
+                <div class="row">
+                    {% for course in filter.qs %}
+                        <div class="col-12 col-lg-5 col-xl-4">
+
+                            <!-- Profile Image -->
+
+                            <!-- /.box -->
+                            <div class="box box-widget widget-user">
+                                <!-- Add the bg color to the header using any of the bg-* classes -->
+                                <div class="widget-user-header bg-black"
+                                     style="background: url({{ master.profile_image.url }}) center center;">
+                                    <a href="{{ course.get_absolute_url }}"><h3
+                                            class="widget-user-username text-center">{{ course }}</h3></a>
+                                </div>
+                                <div class="widget-user-image">
+                                    <img class="rounded-circle" src="{{ master.logo.url }}" alt="User Avatar">
+                                </div>
+                                <div class="box-footer">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="description-block">
+                                                <h5 class="description-header">{{ course.institute }}</h5>
+                                                <span class="description-text">آموزشگاه</span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-4 br-1 bl-1">
+                                            <div class="description-block">
+                                                <h5 class="description-header">{{ course.course_student_count }}</h5>
+                                                <span class="description-text"> دانش آموز</span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-4">
+                                            <div class="description-block">
+                                                <h5 class="description-header">{{ course.status }}</h5>
+                                                <span class="description-text">وضعیت کلاس</span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                            </div>
+
+
+                        </div>
+                    {% empty %}
+                        <h1 class="m-auto text-danger">هیچ کلاسی موجود نمیباشد</h1>
+                    {% endfor %}
+
+                </div>
+                <!-- /.row -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+
+
+    <!-- Control Sidebar -->
+
+
+{% endblock %}

@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="container-full">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="mr-auto">
+                        <h3 class="page-title">پروفایل پایه {{ object }}</h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html"><i
+                                            class="mdi mdi-home-outline"></i></a></li>
+
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="row">
+                    <div class="col-12 col-lg-5 col-xl-4">
+
+                        <div class="box box-inverse bg-img" style="background-image: url(../images/gallery/full/1.jpg);"
+                             data-overlay="2">
+                            <div class="flexbox px-20 pt-20">
+                                <label class="toggler toggler-danger text-white">
+                                    <input type="checkbox">
+
+                                </label>
+
+                            </div>
+
+                            <div class="box-body text-center pb-50">
+                                <a href="#">
+                                    <img class="avatar avatar-xxl avatar-bordered" src="../images/avatar/5.jpg" alt="">
+                                </a>
+                                <h4 class="mt-2 mb-0"><a class="hover-primary text-white" href="#">{{ object.user }}</a>
+                                </h4>
+
+                            </div>
+
+                            <ul class="box-body flexbox flex-justified text-center" data-overlay="4">
+                                <li>
+                                    <span class="opacity-60">کلاس ها</span><br>
+                                    <span class="font-size-20">{{ object.course_count }}</span>
+                                </li>
+                                <li>
+                                    <span class="opacity-60">استاید</span><br>
+                                    <span class="font-size-20">{{ object.master_count }}</span>
+                                </li>
+                                <li>
+                                    <span class="opacity-60">دانش آموزان</span><br>
+                                    <span class="font-size-20">{{ object.student_count }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <br>
+
+                        <a href="{% url "Student:grade_delete" object.id %}"
+                           class="form-control btn-danger text-center">حذف
+                            پایه</a>
+                        <br>
+                        <a href="{% url "Student:grade_update" object.id %}"
+                           class="form-control btn-warning text-center">ویرایش
+                            پایه</a>
+                        <!-- Profile Image -->
+
+
+                        <!-- /.box -->
+
+
+                    </div>
+                    <div class="col-12 col-lg-7 col-xl-8">
+
+                        <div class="nav-tabs-custom box-profile">
+                            <ul class="nav nav-tabs">
+                                <li><a class="active" href="#usertimeline" data-toggle="tab">دور ه ها</a></li>
+                                <li><a href="#settings" data-toggle="tab">رشته های کلاس</a></li>
+                                <li><a href="#activity" data-toggle="tab">افزودن رشته</a></li>
+                            </ul>
+
+
+                            <div class="tab-content">
+
+                                <div class="active tab-pane" id="usertimeline">
+
+
+                                    <div class="box p-15">
+                                        <div class="timeline timeline-single-column timeline-single-full-column">
+
+    <span class="timeline-label">
+								<span class="badge badge-info badge-pill">دروه ها</span>
+							</span>
+
+
+                                            <div class="box">
+
+                                                <!-- /.box-header -->
+                                                <div class="box-body">
+                                                    <div class="table-responsive">
+                                                        <table id="example"
+                                                               class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>عنوان</th>
+                                                                <th>استاد</th>
+                                                                <th>پایه</th>
+                                                                <th>تعداد دانش آموز</th>
+                                                                <th>تاریخ شروع</th>
+                                                                <th>تاریخ اتمام</th>
+                                                                <th>جزییات</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            {% for course in object.courses.all %}
+                                                                <tr>
+
+                                                                    <td>{{ course.title }}</td>
+                                                                    <td>{{ course.master }}</td>
+                                                                    <td>{{ course.grade }}</td>
+                                                                    <td class="text-center">{{ course.course_student_count }}</td>
+                                                                    <td>{{ course.start_time }}</td>
+                                                                    <td>{{ course.finish_time }}</td>
+                                                                    <td>
+                                                                        <a class="btn btn-primary"
+                                                                           href="{{ course.get_absolute_url }}">جزییات
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            {% empty %}
+                                                                <h2 class="text-center">هیچ کلاس ای موجود نمیباشد</h2>
+                                                            {% endfor %}
+
+
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <!-- /.box-body -->
+                                            </div>
+
+
+                                            <span class="timeline-label">
+								<button class="btn btn-rounded btn-danger"><i class="fa fa-clock-o"></i></button>
+							</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+
+                                <div class="tab-pane" id="activity">
+
+                                    <div class="box p-15">
+                                        <div class="box-body">
+
+                                            <form method="post" action="">
+                                                {{ form.media }}
+                                                {% csrf_token %}
+                                                <div class="form-group row">
+                                                    {% for field in form.visible_fields %}
+                                                        <label class="col-form-label col-md-2">{{ field.label }}</label>
+                                                        {{ field|add_class:'form-control' }}
+                                                        {% for error in field.errors %}
+                                                            <span class="help-block">{{ error }}</span>
+                                                        {% endfor %}
+                                                    {% endfor %}
+                                                </div>
+                                                <input value="افزودن رشته" class="btn-success  form-control "
+                                                       type="submit">
+
+                                            </form>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- /.tab-pane -->
+
+                                <div class="tab-pane" id="settings">
+
+                                    <div class="col-md-12 col-12 m-auto">
+                                        <div class="box">
+                                            <div class="box-header with-border">
+                                                <h2>رشته های کلاس</h2>
+                                            </div>
+                                            <h2></h2>
+                                            <div class="box-body">
+                                                {% for major in object.major_set.all %}
+                                                    <h3 style="display: inline">{{ major.title }}:</h3>
+                                                    <a class="btn btn-warning"
+                                                       href="{% url 'Student:major_update' major.id %}">ویرایش</a>
+                                                    <a class="btn btn-danger"
+                                                       href="{% url 'Student:major_delete' major.id %}">حذف</a>
+                                                    <br>
+                                                    <br>
+                                                {% empty %}
+                                                    <h2 class="tex-center">هیچ رشته ای برای این پابه موجود نیست</h2>
+                                                {% endfor %}
+                                            </div>
+                                            <div class="box-footer text-right">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                            </div>
+                            <!-- /.tab-content -->
+                        </div>
+                        <!-- /.nav-tabs-custom -->
+                    </div>
+                </div>
+                <!-- /.row -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+{% endblock %}

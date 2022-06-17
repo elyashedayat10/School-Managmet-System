@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="content-wrapper">
+        <div class="container-full">
+
+            <!-- Main content -->
+            <section class="content">
+                         <h2 class="text-center">اطلاعات کلی</h2><br>
+                <div class="row">
+
+                    <div class="col-xl-2 col-6">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body">
+                                <div>
+                                    <p class="text-mute mt-20 mb-0 font-size-16">کل بازدید کنندگان</p>
+                                    <h3 class="text-dark mb-0 font-weight-500">{{ see }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-6">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body">
+
+                                <div>
+                                    <p class="text-mute mt-20 mb-0 font-size-16">تعداد هولد شده ها</p>
+                                    <h3 class="text-dark mb-0 font-weight-500">{{ hold_count }}
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-6">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body">
+                                <div>
+                                    <p class="text-mute mt-20 mb-0 font-size-16">تعداد درخواست بازدید</p>
+                                    <h3 class="text-dark mb-0 font-weight-500">{{ visit_count }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-6">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body">
+                                <div>
+                                    <p class="text-mute mt-20 mb-0 font-size-16">بلاک های بازدید شده</p>
+                                    <h3 class="text-dark mb-0 font-weight-500">{{ visit_count }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-6">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body">
+
+                                <div>
+                                    <p class="text-mute mt-20 mb-0 font-size-16">بلاک های فروخته شده</p>
+                                    <h3 class="text-dark mb-0 font-weight-500">{{ exportal_count }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-6">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body">
+
+                                <div>
+                                    <p class="text-mute mt-20 mb-0 font-size-16">تعداد درخواست نمونه</p>
+                                    <h3 class="text-dark mb-0 font-weight-500">{{ nemoneh_count }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

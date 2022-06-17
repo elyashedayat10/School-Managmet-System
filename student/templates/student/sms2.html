@@ -1,0 +1,97 @@
+{% extends  'base.html' %}
+{% block content %}
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="container-full">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="mr-auto">
+                      <h3 class="page-title">
+                        ارسال پیام متناسب رشته
+                        </3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html"><i
+                                            class="mdi mdi-home-outline"></i></a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="row">
+
+                    <div class="col-11 m-auto">
+                        <div class="box">
+
+                            <div class="box-header">
+                                <h4 class="box-title">ارسال پیام متناسب رشته</h4>
+                            </div>
+                            <div class="box-body">
+
+
+
+
+
+
+
+
+
+
+<form method="post" action=''>
+  {% csrf_token %}
+
+      
+      
+        <div class="form-group">
+    <label for="exampleFormControlSelect2">رشته را انتخاب کنید</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2">
+          {% for course in major_list %}
+      <option>{{ course }}</option>
+      {% endfor %}
+    </select>
+
+  </div>
+          <div class="form-group">
+    <label for="exampleFormControlSelect2">پایه را انتخاب کنید</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2">
+          {% for course in grade_list %}
+      <option>{{ course }}</option>
+      {% endfor %}
+    </select>
+
+  </div>
+      
+      
+      
+      
+      
+      
+      
+      
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">متن پیام خود را برای ارسال وارد کنید
+    <textarea class="form-control" id="exampleFormControlTextarea1"  cols="15" rows="10"></textarea>
+  </div>
+        <input value="ارسال پیام" class="btn-success  form-control "
+                                           type="submit">
+</form>
+                              </div>
+                            <!-- /.box -->
+                        </div>
+                        <!-- ./col -->
+                    </div>
+                    <!-- /.row -->
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+{% endblock content %}

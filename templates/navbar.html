@@ -1,0 +1,163 @@
+{% load config_tags %}
+{#<!-- Left side column. contains the logo and sidebar -->#}
+<aside class="main-sidebar">
+    {#    <!-- sidebar-->#}
+    <section class="sidebar" style="overflow: scroll !important;">
+
+        <div class="user-profile">
+            <div class="ulogo">
+                <a href="{% url "config:Panel" %}">
+                    <!-- logo for regular state and mobile devices -->
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="{{ site_setting_obj.image.url }}" alt="">
+
+                    </div>
+                    <h3>{{ site_setting_obj.title }}</h3>
+            </div>
+        </div>
+
+        {#        <!-- sidebar menu-->#}
+        <ul class="sidebar-menu" data-widget="tree">
+
+            <li>
+                <a href="{% url "Config:Panel" %}">
+                    <i data-feather="pie-chart"></i>
+                    <span>داشبورد</span>
+                </a>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+                    <span>آموزشگاه</span>
+                    <span class="pull-right-container">
+								<i class="fa fa-angle-right pull-right"></i>
+							</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url "Institute:list" %}"><i class="ti-more"></i>
+                        لیست آموزشگاها</a></li>
+                    <li><a href="{% url "Institute:create" %}"><i class="ti-more"></i>افزودن آموزشگاه</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+                    <span>اساتید</span>
+                    <span class="pull-right-container">
+								<i class="fa fa-angle-right pull-right"></i>
+							</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url "Master:List" %}"><i class="ti-more"></i>
+                        لیست اساتید</a></li>
+                    <li><a href="{% url "Master:Create" %}"><i class="ti-more"></i>افزودن استاد</a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li class="treeview">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+                    <span>دانش آموزان</span>
+                    <span class="pull-right-container">
+								<i class="fa fa-angle-right pull-right"></i>
+							</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url "Student:list" %}"><i class="ti-more"></i>
+                        لیست دانش آموزان</a></li>
+                    <li><a href="{% url "Student:create" %}"><i class="ti-more"></i>افزودن دانش آموز</a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li class="treeview">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+                    <span>کلاس</span>
+                    <span class="pull-right-container">
+								<i class="fa fa-angle-right pull-right"></i>
+							</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url "Course:List" %}"><i class="ti-more"></i>
+                        لیست کلاس ها</a></li>
+                    <li><a href="{% url "Course:Create" %}"><i class="ti-more"></i>افزودن کلاس</a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li class="treeview">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+                    <span>پایه ها</span>
+                    <span class="pull-right-container">
+								<i class="fa fa-angle-right pull-right"></i>
+							</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url "Student:grade_list" %}"><i class="ti-more"></i>
+                        لیست پایه ها</a></li>
+                    <li><a href="{% url "Student:grade_create" %}"><i class="ti-more"></i>افزودن پایه</a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li class="treeview">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+                    <span>کاربران ادمین</span>
+                    <span class="pull-right-container">
+								<i class="fa fa-angle-right pull-right"></i>
+							</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url "account:admin_list" %}"><i class="ti-more"></i>
+                        لیست کاربران ادمین</a></li>
+                    <li><a href="{% url "account:admin_create" %}"><i class="ti-more"></i>افزودن ادمین</a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li class="treeview">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+                    <span>پیام ها</span>
+                    <span class="pull-right-container">
+								<i class="fa fa-angle-right pull-right"></i>
+							</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url "Student:sms" %}"><i class="ti-more"></i>
+                      ارسال پیام (کلاس)</a></li>
+	     <li><a href="{% url "Student:sms1" %}"><i class="ti-more"></i>
+                        ارسال پیام</a></li>
+			     <li><a href="{% url "Student:sms2" %}"><i class="ti-more"></i>
+                        ارسال (رشته)</a></li>
+<!--                     <li><a href="{% url "Student:select" %}"><i class="ti-more"></i>پیام های ارسال شدع</a> -->
+<!--                     </li> -->
+                </ul>
+            </li>
+
+        </ul>
+    </section>
+
+    <div class="sidebar-footer">
+        <!-- item-->
+        {% setting_show %}
+        <!-- item-->
+        <a href="" class="link" data-toggle="tooltip" title="" data-original-title="ایمیل"><i
+                class="ti-email"></i></a>
+        <!-- item-->
+        <a href="{% url "account:logout" %}" class="link" data-toggle="tooltip" title="" data-original-title="خروج"><i
+                class="ti-lock"></i></a>
+    </div>
+</aside>

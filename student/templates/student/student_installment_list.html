@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="wrapper">
+
+    <header class="main-header">
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top pl-30">
+            <!-- Sidebar toggle button-->
+            <div>
+                <ul class="nav">
+                   
+                </ul>
+            </div>
+
+            <div class="navbar-custom-menu r-side">
+                <ul class="nav navbar-nav">
+             
+                  
+                   
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="content-wrapper">
+        <div class="container-full">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="mr-auto">
+                        <h3 class="page-title">لیست  اقساط دانش آموز </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html"><i
+                                            class="mdi mdi-home-outline"></i></a></li>
+
+                                    <li class="breadcrumb-item active" aria-current="page">جداول داده ای</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+
+
+                    <div class="col-12">
+
+
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">لیست اقساط</h3>
+                                <h6 class="box-subtitle">
+                                </h6>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="table-responsive">
+                                    <table id="example"
+                                           class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                                        <thead>
+                                        <tr>
+                                            <th>ردیف</th>
+                                            <th>نام</th>
+                                            <th>مبلغ</th>
+                                            <th>وضعیت</th>
+                                            <th>کد پرداخت</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for student in object_list %}
+                                            <tr>
+                                                <td>{{ forloop.counter }}</td>
+                                                <td>{{ student.student.user.first_name }}-{{ student.student.user.last_name }}</td>
+                                                <td>{{ student.amount }} ریال </td>
+                                                <td>{% if student.paid %}
+                                                    <a class="btn btn-success">پرداخت شده</a>
+                                                {% else %}
+                                                    <a href="{% url "Student:student_insallmet_update" student.id %}"
+                                                       class="btn btn-danger">پرداخت نشده</a>
+                                                {% endif %}
+                                                </td>
+                                            <td>{% if student.paid %} {{ student.code }} {% endif %}</td>
+                                            </tr>
+                                         {% empty %}
+                                            <h2>لیست اقساط خالی میباشد</h2>
+                                        {% endfor %}
+
+
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </section>
+            <!-- /.content -->
+
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../images/favicon.ico">
+
+    <title>مجتمع آموزشی نوین</title>
+
+    <!-- Vendors Style-->
+    <link rel="stylesheet" href="{% static 'panel/css/vendors_css.css' %}">
+
+    <!-- Style-->
+    <link rel="stylesheet" href="{% static 'panel/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'panel/css/skin_color.css' %}">
+
+</head>
+
+<body class="hold-transition light-skin sidebar-mini theme-primary rtl">
+<div class="wrapper">
+
+     <header class="main-header">
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top pl-30">
+            <!-- Sidebar toggle button-->
+            <div>
+                <ul class="nav">
+ 
+                 
+                </ul>
+            </div>
+
+            <div class="navbar-custom-menu r-side">
+                <ul class="nav navbar-nav">
+ 
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Left side column. contains the logo and sidebar -->
+
+    {% include 'navbar.html' %}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="container-full">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="mr-auto">
+                        <h3 class="page-title">لیست ادمین</h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html"><i
+                                            class="mdi mdi-home-outline"></i></a></li>
+
+                                    <li class="breadcrumb-item active" aria-current="page">جداول داده ای</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+
+
+                    <div class="col-12">
+
+
+                        <!-- /.box -->
+
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">   {{ count }}لیست تمام ادمین ها</h3>
+                                <h6 class="box-subtitle">
+                                </h6>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="table-responsive">
+                                    <table id="example"
+                                           class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                                        <thead>
+                                        <tr>
+                                            <th>نام</th>
+                                            <th>نام خانوادگی</th>
+                                            <th>کد ملی</th>
+                                            <th>شماره تماس</th>
+                                            <th>آخرین ورود</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for admin in object_list %}
+                                            <tr>
+                                                <td>{{ admin.first_name }}</td>
+                                                <td>{{ admin.last_name }}</td>
+                                                <td>{{ admin.national_code }}</td>
+                                                <td>{{ admin.phone_number }}</td>
+                                                <td>{{ admin.last_login }}</td>
+
+                                            </tr>
+                                        {% empty %}
+                                            <h1>هیچ ادمینی ثبت نشده است</h1>
+                                        {% endfor %}
+
+
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </section>
+            <!-- /.content -->
+
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+</div>
+<!-- Control Sidebar -->
+
+<!-- /.control-sidebar -->
+
+<!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+
+<!-- ./wrapper -->
+
+<!-- Vendor JS -->
+<script src="{% static 'panel/js/vendors.min.js' %}"></script>
+<script src="{% static 'panel/icons/feather-icons/feather.min.js' %}"></script>
+<script src="{% static 'panel/vendor_components/datatable/datatables.min.js' %}"></script>
+<script src="{% static 'panel/js/pages/data-table.js' %}"></script>
+
+<!-- Sunny Admin App -->
+<script src="{% static 'panel/js/template.js' %}"></script>
+
+
+</body>
+
+</html>

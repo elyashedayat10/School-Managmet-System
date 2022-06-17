@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="container-full">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="mr-auto">
+                        <h3 class="page-title">اساتید</h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html"><i
+                                            class="mdi mdi-home-outline"></i></a></li>
+                                    <li class="breadcrumb-item" aria-current="page">لیست اساتید</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="row">
+                    {% for master in object_list %}
+                        <div class="col-12 col-lg-5 col-xl-4">
+
+                            <!-- Profile Image -->
+
+                            <!-- /.box -->
+                            <div class="box box-widget widget-user">
+                                <!-- Add the bg color to the header using any of the bg-* classes -->
+                                <div class="widget-user-header bg-black"
+                                     style="background: url({{ master.profile_image.url }}) center center;">
+                                    <a href="{{ master.get_absolute_url }}"><h3
+                                            class="widget-user-username text-center">{{ master }}</h3></a>
+                                </div>
+                                <div class="widget-user-image">
+                                    <img class="rounded-circle" src="{{ master.profile_image.url }}" alt="User Avatar">
+                                </div>
+                                <div class="box-footer">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="description-block">
+                                                <h5 class="description-header">{{ master.master_course_count }}</h5>
+                                                <span class="description-text">آموزشگاه</span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-4 br-1 bl-1">
+                                            <div class="description-block">
+                                                <h5 class="description-header">{{ master.student_count }}</h5>
+                                                <span class="description-text"> دانش آموز</span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-4">
+                                            <div class="description-block">
+                                                <h5 class="description-header">{{ master.master_course_count }}</h5>
+                                                <span class="description-text"> کلاس</span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    {% empty %}
+                        <h1 class="m-auto">هیچ استادی ثبت نشده است</h1>
+                    {% endfor %}
+
+                </div>
+                <!-- /.row -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+
+
+    <!-- Control Sidebar -->
+
+
+{% endblock %}

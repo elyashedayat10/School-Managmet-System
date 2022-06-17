@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="container-full">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="mr-auto">
+                        <h3 class="page-title">افزودن ادمین</h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html"><i
+                                            class="mdi mdi-home-outline"></i></a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="row">
+
+                    <div class="col-11 m-auto">
+                        <div class="box">
+
+                            <div class="box-header">
+                                <h4 class="box-title">افزودن ادمین</h4>
+                            </div>
+                            <div class="box-body">
+
+                                <form method="post" action="" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="form-group row">
+                                        {% for field in form.visible_fields %}
+                                            <label class="col-form-label col-md-2">{{ field.label }}</label>
+                                            {{ field|add_class:'form-control' }}
+                                            {% for error in field.errors %}
+                                                <span class="help-block">{{ error }}</span>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </div>
+                                    <input value="افزودن ادمین" class="btn-success  form-control "
+                                           type="submit">
+
+                                </form>
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                        <!-- ./col -->
+                    </div>
+                    <!-- /.row -->
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+{% endblock %}

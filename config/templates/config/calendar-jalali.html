@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="../images/favicon.ico">
+
+	<title>سانی ادمین - تقویم رویداد</title>
+
+	<!-- Vendors Style-->
+	<link rel="stylesheet" href="css/vendors_css.css">
+
+	<!-- Style-->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/skin_color.css">
+
+</head>
+
+<style>
+	.fc-basic-view .fc-day-number {
+		display: revert;
+	}
+
+	.fc-widget-content {
+		border-color: rgba(184, 198, 214, 0.3) !important;
+	}
+</style>
+
+<body class="hold-transition light-skin sidebar-mini theme-primary rtl">
+	<div class="wrapper">
+
+		<header class="main-header">
+			<!-- Header Navbar -->
+			<nav class="navbar navbar-static-top pl-30">
+				<!-- Sidebar toggle button-->
+				<div>
+					<ul class="nav">
+						<li class="btn-group nav-item">
+							<a href="#" class="waves-effect waves-light nav-link rounded svg-bt-icon"
+								data-toggle="push-menu" role="button">
+								<i class="nav-link-icon mdi mdi-menu"></i>
+							</a>
+						</li>
+						<li class="btn-group nav-item">
+							<a href="#" data-provide="fullscreen"
+								class="waves-effect waves-light nav-link rounded svg-bt-icon" title="تمام صفحه">
+								<i class="nav-link-icon mdi mdi-crop-free"></i>
+							</a>
+						</li>
+						<li class="btn-group nav-item d-none d-xl-inline-block">
+							<a href="#" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="">
+								<i class="ti-check-box"></i>
+							</a>
+						</li>
+						<li class="btn-group nav-item d-none d-xl-inline-block">
+							<a href="calendar.html" class="waves-effect waves-light nav-link rounded svg-bt-icon"
+								title="">
+								<i class="ti-calendar"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="navbar-custom-menu r-side">
+					<ul class="nav navbar-nav">
+						<!-- full Screen -->
+						<li class="search-bar">
+							<div class="lookup lookup-circle lookup-right">
+								<input type="text" name="s">
+							</div>
+						</li>
+						<!-- Notifications -->
+						<li class="dropdown notifications-menu">
+							<a href="#" class="waves-effect waves-light rounded dropdown-toggle" data-toggle="dropdown"
+								title="اعلان ها">
+								<i class="ti-bell"></i>
+							</a>
+							<ul class="dropdown-menu animated bounceIn">
+
+								<li class="header">
+									<div class="p-20">
+										<div class="flexbox">
+											<div>
+												<h4 class="mb-0 mt-0">اعلان ها</h4>
+											</div>
+											<div>
+												<a href="#" class="text-danger">پاک کردن همه</a>
+											</div>
+										</div>
+									</div>
+								</li>
+
+								<li>
+									<!-- inner menu: contains the actual data -->
+									<ul class="menu sm-scrol">
+										<li>
+											<a href="#">
+												<i class="fa fa-users text-info"></i> لورم ایپسوم متن ساختگی با تولید
+												سادگی
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fa fa-warning text-warning"></i> متن ساختگی صنعت چاپ با تولید
+												سادگی
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fa fa-users text-danger"></i> تولید سادگی نامفهوم با متن
+												ساختگی لورم ایپسوم در صنعت چاپ
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fa fa-shopping-cart text-success"></i> لورم ایپسوم با تولید
+												سادگی نامفهوم
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fa fa-user text-danger"></i> متن ساختگی با تولید سادگی نامفهوم
+												در صنعت چاپ
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fa fa-user text-primary"></i> لورم ایپسوم متن ساختگی
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fa fa-user text-success"></i> با تولید سادگی نامفهوم در صنعت
+												چاپ متن ساختگی
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li class="footer">
+									<a href="#">مشاهده همه</a>
+								</li>
+							</ul>
+						</li>
+
+						<!-- User Account-->
+						<li class="dropdown user user-menu">
+							<a href="#" class="waves-effect waves-light rounded dropdown-toggle p-0"
+								data-toggle="dropdown" title="کاربر">
+								<img src="../images/avatar/1.jpg" alt="">
+							</a>
+							<ul class="dropdown-menu animated flipInX">
+								<li class="user-body">
+									<a class="dropdown-item" href="#"><i class="ti-user text-muted mr-2"></i>
+										پروفایل</a>
+									<a class="dropdown-item" href="#"><i class="ti-wallet text-muted mr-2"></i> کیف پول
+										من</a>
+									<a class="dropdown-item" href="#"><i class="ti-settings text-muted mr-2"></i>
+										تنظیمات</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="#"><i class="ti-lock text-muted mr-2"></i> خروج</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="#" data-toggle="control-sidebar" title="تنظیمات" class="waves-effect waves-light">
+								<i class="ti-settings"></i>
+							</a>
+						</li>
+
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+
+
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<div class="container-full">
+				<!-- Content Header (Page header) -->
+				<div class="content-header">
+					<div class="d-flex align-items-center">
+						<div class="mr-auto">
+							<h3 class="page-title">تقویم رویداد شمسی</h3>
+							<div class="d-inline-block align-items-center">
+								<nav>
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item"><a href="index.html"><i
+													class="mdi mdi-home-outline"></i></a></li>
+										<li class="breadcrumb-item" aria-current="page">برنامه ها</li>
+										<li class="breadcrumb-item active" aria-current="page">تقویم شمسی</li>
+									</ol>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Main content -->
+				<section class="content">
+
+					<div class="row">
+
+						<div class="col-12">
+							<div class="box">
+								<div class="box-body">
+									<div class="row">
+										<div class="col-xl-9 col-lg-8 col-12">
+											<div id='calendar2'></div>
+										</div>
+										<div class="col-xl-3 col-lg-4 col-12">
+											<div class="box no-border no-shadow">
+												<div class="box-header with-border">
+													<h4 class="box-title">تقویم رویداد شمسی</h4>
+												</div>
+												<div class="box-body p-0">
+													<!-- the events -->
+													<div id='external-events'>
+														<p>برای ثبت رویداد جدید، رویداد های زیر را کشیده و در قسمت مورد
+															نظر رها کنید یا
+															روی روز مورد نظر کلیک کنید</p>
+														<div class='fc-event mb-2'>رویداد 1</div>
+														<div class='fc-event mb-2'>رویداد 2</div>
+														<div class='fc-event mb-2'>رویداد 3</div>
+														<div class='fc-event mb-2'>رویداد 4</div>
+														<div class='fc-event mb-2'>رویداد 5</div>
+														<p class="mt-5">
+															<input type='checkbox' id='drop-remove' />
+															<label for='drop-remove'>حذف رویداد بعد از رها کردن</label>
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!-- /.row -->
+
+				</section>
+				<!-- /.content -->
+			</div>
+
+		</div>
+		<!-- /.content-wrapper -->
+
+
+		<footer class="main-footer">
+
+			&copy; 2020 تمامی حقوق محفوظ است
+		</footer>
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar">
+
+			<div class="rpanel-title"><span class="pull-right btn btn-circle btn-danger"><i
+						class="ion ion-close text-white" data-toggle="control-sidebar"></i></span> </div>
+			<!-- Create the tabs -->
+			<ul class="nav nav-tabs control-sidebar-tabs">
+				<li class="nav-item"><a href="#control-sidebar-home-tab" data-toggle="tab" class="active">چت</a></li>
+				<li class="nav-item"><a href="#control-sidebar-settings-tab" data-toggle="tab">لیست انجام</a></li>
+			</ul>
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<!-- Home tab content -->
+				<div class="tab-pane active" id="control-sidebar-home-tab">
+					<div class="flexbox">
+						<a href="javascript:void(0)" class="text-grey"><i class="ti-minus"></i></a>
+						<p>کاربران</p>
+						<a href="javascript:void(0)" class="text-right text-grey"><i class="ti-plus"></i></a>
+					</div>
+					<div class="lookup lookup-sm lookup-right d-none d-lg-block">
+						<input type="text" name="s" placeholder="جستجو" class="w-p100">
+					</div>
+					<div class="media-list media-list-hover mt-20">
+						<div class="media py-10 px-0">
+							<a class="avatar avatar-lg status-success" href="#">
+								<img src="../images/avatar/1.jpg" alt="...">
+							</a>
+							<div class="media-body">
+								<p class="font-size-16">
+									<a class="hover-primary" href="#"><strong>نسترن</strong></a>
+								</p>
+								<p>لورم ایپسوم متن ...</p>
+								<span>همین حالا</span>
+							</div>
+						</div>
+
+						<div class="media py-10 px-0">
+							<a class="avatar avatar-lg status-danger" href="#">
+								<img src="../images/avatar/2.jpg" alt="...">
+							</a>
+							<div class="media-body">
+								<p class="font-size-16">
+									<a class="hover-primary" href="#"><strong>پریسا</strong></a>
+								</p>
+								<p>تولید سادگی نامفهوم ...</p>
+								<span>33 دقیقه پیش</span>
+							</div>
+						</div>
+
+						<div class="media py-10 px-0">
+							<a class="avatar avatar-lg status-warning" href="#">
+								<img src="../images/avatar/3.jpg" alt="...">
+							</a>
+							<div class="media-body">
+								<p class="font-size-16">
+									<a class="hover-primary" href="#"><strong>پدرام</strong></a>
+								</p>
+								<p>متن ساختگی با تولید ...</p>
+								<span>42 دقیقه پیش</span>
+							</div>
+						</div>
+
+						<div class="media py-10 px-0">
+							<a class="avatar avatar-lg status-primary" href="#">
+								<img src="../images/avatar/4.jpg" alt="...">
+							</a>
+							<div class="media-body">
+								<p class="font-size-16">
+									<a class="hover-primary" href="#"><strong>پدرام</strong></a>
+								</p>
+								<p>متن ساختگی با تولید ...</p>
+								<span>42 دقیقه پیش</span>
+							</div>
+						</div>
+
+						<div class="media py-10 px-0">
+							<a class="avatar avatar-lg status-success" href="#">
+								<img src="../images/avatar/1.jpg" alt="...">
+							</a>
+							<div class="media-body">
+								<p class="font-size-16">
+									<a class="hover-primary" href="#"><strong>نسترن</strong></a>
+								</p>
+								<p>لورم ایپسوم متن ...</p>
+								<span>همین حالا</span>
+							</div>
+						</div>
+
+						<div class="media py-10 px-0">
+							<a class="avatar avatar-lg status-danger" href="#">
+								<img src="../images/avatar/2.jpg" alt="...">
+							</a>
+							<div class="media-body">
+								<p class="font-size-16">
+									<a class="hover-primary" href="#"><strong>پریسا</strong></a>
+								</p>
+								<p>تولید سادگی نامفهوم ...</p>
+								<span>33 دقیقه پیش</span>
+							</div>
+						</div>
+
+						<div class="media py-10 px-0">
+							<a class="avatar avatar-lg status-warning" href="#">
+								<img src="../images/avatar/3.jpg" alt="...">
+							</a>
+							<div class="media-body">
+								<p class="font-size-16">
+									<a class="hover-primary" href="#"><strong>پدرام</strong></a>
+								</p>
+								<p>متن ساختگی با تولید ...</p>
+								<span>42 دقیقه پیش</span>
+							</div>
+						</div>
+
+						<div class="media py-10 px-0">
+							<a class="avatar avatar-lg status-primary" href="#">
+								<img src="../images/avatar/4.jpg" alt="...">
+							</a>
+							<div class="media-body">
+								<p class="font-size-16">
+									<a class="hover-primary" href="#"><strong>پدرام</strong></a>
+								</p>
+								<p>متن ساختگی با تولید ...</p>
+								<span>42 دقیقه پیش</span>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+				<!-- /.tab-pane -->
+				<!-- Settings tab content -->
+				<div class="tab-pane" id="control-sidebar-settings-tab">
+					<div class="flexbox">
+						<a href="javascript:void(0)" class="text-grey"><i class="ti-minus"></i></a>
+						<p>لیست انجام</p>
+						<a href="javascript:void(0)" class="text-right text-grey"><i class="ti-plus"></i></a>
+					</div>
+					<ul class="todo-list mt-20">
+						<li class="py-15 px-5 by-1">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_1" class="filled-in">
+							<label for="basic_checkbox_1" class="mb-0 h-15"></label>
+							<!-- todo text -->
+							<span class="text-line">لورم ایپسوم</span>
+							<!-- Emphasis label -->
+							<small class="badge bg-danger"><i class="fa fa-clock-o"></i> 2 دقیقه</small>
+							<!-- General tools such as edit or delete-->
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+						<li class="py-15 px-5">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_2" class="filled-in">
+							<label for="basic_checkbox_2" class="mb-0 h-15"></label>
+							<span class="text-line">با تولید سادگی</span>
+							<small class="badge bg-info"><i class="fa fa-clock-o"></i> 4 ساعت</small>
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+						<li class="py-15 px-5 by-1">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_3" class="filled-in">
+							<label for="basic_checkbox_3" class="mb-0 h-15"></label>
+							<span class="text-line">متن ساختگی</span>
+							<small class="badge bg-warning"><i class="fa fa-clock-o"></i> 1 روز</small>
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+						<li class="py-15 px-5">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_4" class="filled-in">
+							<label for="basic_checkbox_4" class="mb-0 h-15"></label>
+							<span class="text-line">متن صنعت چاپ</span>
+							<small class="badge bg-success"><i class="fa fa-clock-o"></i> 3 روز</small>
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+						<li class="py-15 px-5 by-1">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_5" class="filled-in">
+							<label for="basic_checkbox_5" class="mb-0 h-15"></label>
+							<span class="text-line">لورم ایپسوم ساختگی</span>
+							<small class="badge bg-primary"><i class="fa fa-clock-o"></i> 1 هفته</small>
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+						<li class="py-15 px-5">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_6" class="filled-in">
+							<label for="basic_checkbox_6" class="mb-0 h-15"></label>
+							<span class="text-line">تولید نامفهوم متن</span>
+							<small class="badge bg-info"><i class="fa fa-clock-o"></i> 1 ماه</small>
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+						<li class="py-15 px-5 by-1">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_7" class="filled-in">
+							<label for="basic_checkbox_7" class="mb-0 h-15"></label>
+							<!-- todo text -->
+							<span class="text-line">لورم ایپسوم</span>
+							<!-- Emphasis label -->
+							<small class="badge bg-danger"><i class="fa fa-clock-o"></i> 2 دقیقه</small>
+							<!-- General tools such as edit or delete-->
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+						<li class="py-15 px-5">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_8" class="filled-in">
+							<label for="basic_checkbox_8" class="mb-0 h-15"></label>
+							<span class="text-line">با تولید سادگی</span>
+							<small class="badge bg-info"><i class="fa fa-clock-o"></i> 4 ساعت</small>
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+						<li class="py-15 px-5 by-1">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_9" class="filled-in">
+							<label for="basic_checkbox_9" class="mb-0 h-15"></label>
+							<span class="text-line">متن ساختگی</span>
+							<small class="badge bg-warning"><i class="fa fa-clock-o"></i> 1 روز</small>
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+						<li class="py-15 px-5">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_10" class="filled-in">
+							<label for="basic_checkbox_10" class="mb-0 h-15"></label>
+							<span class="text-line">متن صنعت چاپ</span>
+							<small class="badge bg-success"><i class="fa fa-clock-o"></i> 3 روز</small>
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- /.tab-pane -->
+			</div>
+		</aside>
+		<!-- /.control-sidebar -->
+
+		<!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<!-- ./wrapper -->
+
+
+	<!-- Vendor JS -->
+	<!-- <script src="js/vendors.min.js"></script> -->
+	<script src="../assets/calendar-jallali/js/jquery.js"></script>
+	<script src="../assets/icons/feather-icons/feather.min.js"></script>
+	<script src="../assets/calendar-jallali/js/jquery-ui.min.js"></script>
+	<script src="../assets/vendor_components/perfect-scrollbar-master/perfect-scrollbar.jquery.min.js"></script>
+	<script src="../assets/calendar-jallali/js/moment.min.js"></script>
+	<script src="../assets/calendar-jallali/js/moment-jalaali.js"></script>
+	<script src="../assets/calendar-jallali/js/fullcalendar.min.js"></script>
+	<script src="../assets/calendar-jallali/js/fa.js"></script>
+
+	<!-- Sunny Admin App -->
+	<script src="js/template.js"></script>
+
+	<script>
+		$(document).ready(function () {
+
+			$('#external-events .fc-event').each(function () {
+
+				$(this).data('event', {
+					title: $.trim($(this).text()),
+					stick: true
+				});
+
+				$(this).draggable({
+					zIndex: 999,
+					revert: true,
+					revertDuration: 0
+				});
+
+			});
+
+
+			$('#calendar2').fullCalendar({
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
+				defaultDate: '2020-11-12',
+				selectable: true,
+				selectHelper: true,
+				select: function (start, end) {
+					var title = prompt('عنوان رویداد : ');
+					var eventData;
+					if (title) {
+						eventData = {
+							title: title,
+							start: start,
+							end: end
+						};
+						$('#calendar2').fullCalendar('renderEvent', eventData,
+							true);
+					}
+					$('#calendar2').fullCalendar('unselect');
+				},
+				lang: 'fa',
+				isJalaali: true,
+				isRTL: true,
+				editable: true,
+				droppable: true,
+				drop: function () {
+
+					if ($('#drop-remove').is(':checked')) {
+
+						$(this).remove();
+					}
+				},
+
+				eventLimit: true,
+				events: [{
+						title: 'رویداد روزانه',
+						start: '2020-11-01'
+					},
+					{
+						title: 'رویداد بلند',
+						start: '2020-12-07',
+						end: '2020-12-10'
+					},
+					{
+						id: 999,
+						title: 'رویداد تکراری',
+						start: '2020-11-09T16:00:00'
+					},
+					{
+						id: 999,
+						title: 'رویداد تکراری',
+						start: '2020-11-16T16:00:00'
+					},
+					{
+						title: 'کنفرانس',
+						start: '2020-11-11',
+						end: '2020-11-13'
+					},
+					{
+						title: 'جلسه',
+						start: '2020-11-12T10:30:00',
+						end: '2020-11-12T12:30:00'
+					},
+					{
+						title: 'ناهار',
+						start: '2020-11-12T12:00:00'
+					},
+					{
+						title: 'جلسه',
+						start: '2020-12-12T14:30:00'
+					},
+					{
+						title: 'تایم استراحت',
+						start: '2020-11-12T17:30:00'
+					},
+					{
+						title: 'شام',
+						start: '2020-12-12T20:00:00'
+					},
+					{
+						title: 'جشن تولد',
+						start: '2020-10-13T07:00:00'
+					},
+					{
+						title: 'لینک گوگل',
+						url: 'http://google.com/',
+						start: '2020-11-28'
+					}
+				]
+			});
+
+		});
+	</script>
+
+
+</body>
+
+</html>

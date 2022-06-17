@@ -1,0 +1,333 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="container-full">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="mr-auto">
+                        <h3 class="page-title">پروفایل استاد {{ object }}</h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html"><i
+                                            class="mdi mdi-home-outline"></i></a></li>
+
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="row">
+                    <div class="col-12 col-lg-5 col-xl-4">
+
+                        <div class="box box-inverse bg-img" style="background-image: url(../images/gallery/full/1.jpg);"
+                             data-overlay="2">
+                            <div class="flexbox px-20 pt-20">
+                                <label class="toggler toggler-danger text-white">
+                                    <input type="checkbox">
+
+                                </label>
+
+                            </div>
+
+                            <div class="box-body text-center pb-50">
+                                <a href="#">
+                                    <img class="avatar avatar-xxl avatar-bordered" src="../images/avatar/5.jpg" alt="">
+                                </a>
+                                <h4 class="mt-2 mb-0"><a class="hover-primary text-white" href="#">{{ object.user }}</a>
+                                </h4>
+
+                            </div>
+
+                            <ul class="box-body flexbox flex-justified text-center" data-overlay="4">
+                                <li>
+                                    <span class="opacity-60">کلاس ها</span><br>
+                                    <span class="font-size-20">{{ object.master_course_count }}</span>
+                                </li>
+                                <li>
+                                    <span class="opacity-60">آموزشگاه</span><br>
+                                    <span class="font-size-20">{{ object.institute_count }}</span>
+                                </li>
+                                <li>
+                                    <span class="opacity-60">دانش آموزان</span><br>
+                                    <span class="font-size-20">{{ object.student_count }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <br>
+                        <a href="{% url "Master:Delete" object.id %}" class="form-control btn-danger text-center">حذف
+                            استاد</a>
+                        <br>
+                        <a href="{% url "Master:Update" object.id %}" class="form-control btn-warning text-center">ویرایش
+                            استاد</a>
+                        <!-- Profile Image -->
+
+
+                        <!-- /.box -->
+
+
+                    </div>
+                    <div class="col-12 col-lg-7 col-xl-8">
+
+                        <div class="nav-tabs-custom box-profile">
+                            <ul class="nav nav-tabs">
+                                <li><a class="active" href="#usertimeline" data-toggle="tab">دور ه ها</a></li>
+                                {#                                <li><a href="#activity" data-toggle="tab">فعالیت</a></li>#}
+                                {#                                <li><a href="#settings" data-toggle="tab">تنظیمات</a></li>#}
+                            </ul>
+
+                            <div class="tab-content">
+
+                                <div class="active tab-pane" id="usertimeline">
+
+
+                                    <div class="box p-15">
+                                        <div class="timeline timeline-single-column timeline-single-full-column">
+
+    <span class="timeline-label">
+								<span class="badge badge-info badge-pill">دروه ها</span>
+							</span>
+
+
+                                            <div class="box">
+
+                                                <!-- /.box-header -->
+                                                <div class="box-body">
+                                                    <div class="table-responsive">
+                                                        <table id="example"
+                                                               class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>عنوان</th>
+                                                                <th>آموزشگاه</th>
+                                                                <th>پایه</th>
+                                                                <th>تعداد دانش آموز</th>
+                                                                <th>تاریخ شروع</th>
+                                                                <th>تاریخ اتمام</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            {% for course in object.courses.all %}
+                                                                <tr>
+
+                                                                    <td>{{ course.title }}</td>
+                                                                    <td>{{ course.institute }}</td>
+                                                                    <td>{{ course.grade }}</td>
+                                                                    <td class="text-center">{{ course.course_student_count }}</td>
+                                                                    <td>{{ course.start_time }}</td>
+                                                                    <td>{{ course.finish_time }}</td>
+                                                                </tr>
+                                                            {% empty %}
+                                                                <h2 class="text-center">هیچ کلاس ای موجود نمیباشد</h2>
+                                                            {% endfor %}
+
+
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <!-- /.box-body -->
+                                            </div>
+
+
+                                            <span class="timeline-label">
+								<button class="btn btn-rounded btn-danger"><i class="fa fa-clock-o"></i></button>
+							</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+
+                                {#                                <div class="tab-pane" id="activity">#}
+
+                                {#                                    <div class="box p-15">#}
+                                {#                                        <!-- Post -->#}
+                                {#                                        <div class="post">#}
+                                {#                                            <div class="user-block">#}
+                                {#                                                <img class="img-bordered-sm rounded-circle"#}
+                                {#                                                     src="../images/user1-128x128.jpg" alt="user image">#}
+                                {#                                                <span class="username">#}
+                                {#							  <a href="#">پریسا</a>#}
+                                {#							  <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>#}
+                                {#							</span>#}
+                                {#                                                <span class="description">5 دقیقه قبل</span>#}
+                                {#                                            </div>#}
+                                {#                                            <!-- /.user-block -->#}
+                                {#                                            <div class="activitytimeline">#}
+                                {#                                                <p>#}
+                                {#                                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن#}
+                                {#                                                    ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی#}
+                                {#                                                    نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم#}
+                                {#                                                    متن ساختگی با تولید سادگی#}
+                                {#                                                </p>#}
+                                {#                                                <ul class="list-inline">#}
+                                {#                                                    <li><a href="#" class="link-black text-sm"><i#}
+                                {#                                                            class="fa fa-share margin-r-5"></i> اشتراک گذاری</a></li>#}
+                                {#                                                    <li><a href="#" class="link-black text-sm"><i#}
+                                {#                                                            class="fa fa-thumbs-o-up margin-r-5"></i> پسند</a>#}
+                                {#                                                    </li>#}
+                                {#                                                    <li class="pull-right">#}
+                                {#                                                        <a href="#" class="link-black text-sm"><i#}
+                                {#                                                                class="fa fa-comments-o margin-r-5"></i> دیدگاه#}
+                                {#                                                            (5)</a></li>#}
+                                {#                                                </ul>#}
+                                {#                                                <form class="form-element">#}
+                                {#                                                    <input class="form-control input-sm" type="text"#}
+                                {#                                                           placeholder="یک دیدگاه بنویسید">#}
+                                {#                                                </form>#}
+                                {#                                            </div>#}
+                                {#                                        </div>#}
+                                {#                                        <!-- /.post -->#}
+                                {##}
+                                {#                                        <!-- Post -->#}
+                                {#                                        <div class="post">#}
+                                {#                                            <div class="user-block">#}
+                                {#                                                <img class="img-bordered-sm rounded-circle"#}
+                                {#                                                     src="../images/user6-128x128.jpg" alt="user image">#}
+                                {#                                                <span class="username">#}
+                                {#							  <a href="#">فرهاد</a>#}
+                                {#							  <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>#}
+                                {#							</span>#}
+                                {#                                                <span class="description">5 دقیقه قبل</span>#}
+                                {#                                            </div>#}
+                                {#                                            <!-- /.user-block -->#}
+                                {#                                            <div class="activitytimeline">#}
+                                {#                                                <div class="row mb-20">#}
+                                {#                                                    <div class="col-sm-6">#}
+                                {#                                                        <img class="img-fluid" src="../images/photo1.png" alt="Photo">#}
+                                {#                                                    </div>#}
+                                {#                                                    <!-- /.col -->#}
+                                {#                                                    <div class="col-sm-6">#}
+                                {#                                                        <div class="row">#}
+                                {#                                                            <div class="col-sm-6">#}
+                                {#                                                                <img class="img-fluid" src="../images/photo2.png"#}
+                                {#                                                                     alt="Photo">#}
+                                {#                                                                <br><br>#}
+                                {#                                                                <img class="img-fluid" src="../images/photo3.jpg"#}
+                                {#                                                                     alt="Photo">#}
+                                {#                                                            </div>#}
+                                {#                                                            <!-- /.col -->#}
+                                {#                                                            <div class="col-sm-6">#}
+                                {#                                                                <img class="img-fluid" src="../images/photo4.jpg"#}
+                                {#                                                                     alt="Photo">#}
+                                {#                                                                <br><br>#}
+                                {#                                                                <img class="img-fluid" src="../images/photo1.png"#}
+                                {#                                                                     alt="Photo">#}
+                                {#                                                            </div>#}
+                                {#                                                            <!-- /.col -->#}
+                                {#                                                        </div>#}
+                                {#                                                        <!-- /.row -->#}
+                                {#                                                    </div>#}
+                                {#                                                    <!-- /.col -->#}
+                                {#                                                </div>#}
+                                {#                                                <!-- /.row -->#}
+                                {##}
+                                {#                                                <ul class="list-inline">#}
+                                {#                                                    <li><a href="#" class="link-black text-sm"><i#}
+                                {#                                                            class="fa fa-share margin-r-5"></i> اشتراک گذاری</a></li>#}
+                                {#                                                    <li><a href="#" class="link-black text-sm"><i#}
+                                {#                                                            class="fa fa-thumbs-o-up margin-r-5"></i> پسند</a>#}
+                                {#                                                    </li>#}
+                                {#                                                    <li class="pull-right">#}
+                                {#                                                        <a href="#" class="link-black text-sm"><i#}
+                                {#                                                                class="fa fa-comments-o margin-r-5"></i> دیدگاه#}
+                                {#                                                            (5)</a></li>#}
+                                {#                                                </ul>#}
+                                {##}
+                                {#                                                <form class="form-element">#}
+                                {#                                                    <input class="form-control input-sm" type="text"#}
+                                {#                                                           placeholder="یک دیدگاه بنویسید">#}
+                                {#                                                </form>#}
+                                {#                                            </div>#}
+                                {#                                        </div>#}
+                                {#                                        <!-- /.post -->#}
+                                {##}
+                                {#                                        <!-- Post -->#}
+                                {#                                        <div class="post clearfix">#}
+                                {#                                            <div class="user-block">#}
+                                {#                                                <img class="img-bordered-sm rounded-circle"#}
+                                {#                                                     src="../images/user7-128x128.jpg" alt="user image">#}
+                                {#                                                <span class="username">#}
+                                {#							  <a href="#">ساناز</a>#}
+                                {#							  <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>#}
+                                {#							</span>#}
+                                {#                                                <span class="description">5 دقیقه قبل</span>#}
+                                {#                                            </div>#}
+                                {#                                            <!-- /.user-block -->#}
+                                {#                                            <div class="activitytimeline">#}
+                                {#                                                <p>#}
+                                {#                                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن#}
+                                {#                                                    ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی#}
+                                {#                                                    نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم#}
+                                {#                                                    متن ساختگی با تولید سادگی#}
+                                {#                                                </p>#}
+                                {##}
+                                {#                                                <form class="form-horizontal form-element">#}
+                                {#                                                    <div class="form-group row no-gutters">#}
+                                {#                                                        <div class="col-sm-9">#}
+                                {#                                                            <input class="form-control input-sm" placeholder="پاسخ">#}
+                                {#                                                        </div>#}
+                                {#                                                        <div class="col-sm-3">#}
+                                {#                                                            <button type="submit"#}
+                                {#                                                                    class="btn btn-rounded btn-danger pull-right btn-block btn-sm">#}
+                                {#                                                                ارسال#}
+                                {#                                                            </button>#}
+                                {#                                                        </div>#}
+                                {#                                                    </div>#}
+                                {#                                                </form>#}
+                                {#                                            </div>#}
+                                {#                                        </div>#}
+                                {#                                        <!-- /.post -->#}
+                                {#                                    </div>#}
+
+                                {#                                </div>#}
+                                <!-- /.tab-pane -->
+
+                                {#                                <div class="tab-pane" id="settings">#}
+                                {##}
+                                {#                                    <div class="col-md-12 col-12 m-auto">#}
+                                {#                                        <div class="box">#}
+                                {#                                            <div class="box-header with-border">#}
+                                {#                                                <h4 class="box-title">امور مالی</h4>#}
+                                {#                                            </div>#}
+                                {#                                            {{ object.total_earn }}#}
+                                {#                                            <div class="box-body">#}
+                                {#                                                {% for course in object.courses.all %}#}
+                                {#                                                    <h3>{{ course.title }}-{{ course.course_all_income }}</h3>#}
+                                {#                                                {% empty %}#}
+                                {#                                                    <h2 class="tex-center">هیچ گزارشی برای ارایه موجوئ نیست</h2>#}
+                                {#                                                {% endfor %}#}
+                                {#                                            </div>#}
+                                {#                                            <div class="box-footer text-right">#}
+                                {#                                                <button class="btn btn-rounded btn-primary">تایید</button>#}
+                                {#                                                <button class="btn btn-rounded btn-secondary">لغو</button>#}
+                                {#                                            </div>#}
+                                {#                                        </div>#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
+                                <!-- /.tab-pane -->
+                            </div>
+                            <!-- /.tab-content -->
+                        </div>
+                        <!-- /.nav-tabs-custom -->
+                    </div>
+                </div>
+                <!-- /.row -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+{% endblock %}

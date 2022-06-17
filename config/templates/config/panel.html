@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="container-full">
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-xl-2 col-6">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body">
+
+                                <div>
+                                    <p class="text-mute mt-20 mb-0 font-size-16">دانش آموز</p>
+                                    <h3 class="text-dark mb-0 font-weight-500">{{ student_count }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-6">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body">
+
+                                <div>
+                                    <p class="text-mute mt-20 mb-0 font-size-16">استاد</p>
+                                    <h3 class="text-dark mb-0 font-weight-500">{{ master_count }}
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-6">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body">
+                                <div>
+                                    <p class="text-mute mt-20 mb-0 font-size-16">آموزشگاه</p>
+                                    <h3 class="text-dark mb-0 font-weight-500">{{ institute_count }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-6">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body">
+                                <div>
+                                    <p class="text-mute mt-20 mb-0 font-size-16">مدیر</p>
+                                    <h3 class="text-dark mb-0 font-weight-500">{{ admin_count }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-6">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body">
+
+                                <div>
+                                    <p class="text-mute mt-20 mb-0 font-size-16">کلاس</p>
+                                    <h3 class="text-dark mb-0 font-weight-500">{{ course_count }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-6">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body">
+
+                                <div>
+                                    <p class="text-mute mt-20 mb-0 font-size-16">پایه</p>
+                                    <h3 class="text-dark mb-0 font-weight-500">{{ grade_count }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+       
+                  
+                    <div class="col-md-12">
+
+                        <div class="row">
+                           <img src="{{ site_setting_obj.image.url }}" alt="">
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+{% endblock %}
