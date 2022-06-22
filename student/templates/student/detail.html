@@ -117,7 +117,7 @@
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            {% for course in object.course_set.all %}
+                                                            {% for course in object.part.all %}
                                                                 <tr>
                                                                     <td>{{ course.title }}</td>
                                                                     <td>{{ course.institute }}</td>
@@ -163,7 +163,7 @@
                                                     </h4>
 
                                                     <a href="{% url "Course:participation_add" course.id object.id %}"
-                                                       class="pull-right btn btn-primary {% if course in object.course_set.all %}disabled{% endif %}"
+                                                       class="pull-right btn btn-primary {% if course in object.part.all %}disabled{% endif %}"
                                                        style="margin-bottom: -10px;margin-top: -65px">افزودن دانش آموز
                                                         به کلاس</a>
                                                 </div>
@@ -189,7 +189,7 @@
                                                 {#                                                شسیبشسی#}
                                                 {#                                                {% for course in object.courses.all %}#}
                                                 <h3>تعداد کلاس ها:{{ object.get_course_count }}</h3>
-                                                <h3>تعداد کلاس ها:{{ object.total_pay }}</h3>
+                                                <h3>مجموع قابل پرداخت:{{ object.total_pay }}</h3>
                                                 <a class="btn btn-primary"
                                                    href="{% url 'Student:installmentcreateview' object.id %}">قسط
                                                     بندی</a>
@@ -200,7 +200,6 @@
                                             <div class="box-footer text-right">
                                                 <a href="{% url "Student:student_installment_list" object.id %}"
                                                    class="btn btn-rounded btn-primary">لیست قسط بندی</a>
-                                                <button class="btn btn-rounded btn-secondary">لغو</button>
                                             </div>
                                         </div>
                                     </div>

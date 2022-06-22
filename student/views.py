@@ -227,6 +227,7 @@ class StudentInstallmentUpdateView(View):
     def get(self, request, installment_id):
         installment = get_object_or_404(Installment, id=installment_id)
         installment.paid = True
+        installment.paid_date=datetime.date.today()
         installment.save()
         messages.success(request, '', 'success')
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
@@ -264,17 +265,32 @@ class StudentSmsSendView(View):
         course=Course.objects.all()
         return render(request,'student/sms.html',{'course_list':course})
 
+    def post(self,request):
+        print(request.POST)
+        return render(request,'student/sms.html')
+
+
+
 
 class StudentSmsSendOnlyView(View):
     def get(self,request):
         student=Student.objects.all()
         return render(request,'student/sms1.html',{'student_list':student})
+    def post(self,request):
+            print(request.POST)
+            return render(request,'student/sms1.html')
 
 class StudentSmsSendMajorView(View):
     def get(self,request):
         grade=Grade.objects.all()
         major=Major.objects.all()
         return render(request,'student/sms2.html',{'grade_list':grade,'major_list':major})
+
+    def post(self,request):
+            print(request.POST)
+            return render(request,'student/sms2.html')
+
+
 
 class MajorDeleteView(View):
     def get(self, request, major_id):

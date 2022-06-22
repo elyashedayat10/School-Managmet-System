@@ -70,6 +70,7 @@
                                             <th>مبلغ</th>
                                             <th>وضعیت</th>
                                             <th>کد پرداخت</th>
+                                            <th>تاریخ پزداخت</th>
 
                                         </tr>
                                         </thead>
@@ -87,7 +88,9 @@
                                                 {% endif %}
                                                 </td>
                                             <td>{% if student.paid %} {{ student.code }} {% endif %}</td>
+                                            <td>{{ student.paid_date }}</td>
                                             </tr>
+
                                          {% empty %}
                                             <h2>لیست اقساط خالی میباشد</h2>
                                         {% endfor %}

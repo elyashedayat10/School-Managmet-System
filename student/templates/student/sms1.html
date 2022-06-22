@@ -55,7 +55,7 @@
     <label for="exampleFormControlSelect2">دانش آموزانی که میخواهید برای ان ها پیام اسال شود را انتخاب کنید</label>
     <select multiple class="form-control" id="exampleFormControlSelect2">
           {% for course in student_list %}
-      <option>{{ course }}</option>
+      <input type="checkbox" value="{{ course }}">
       {% endfor %}
     </select>
   </div>

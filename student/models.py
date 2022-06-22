@@ -90,6 +90,7 @@ class Installment(models.Model):
     )
     amount = models.IntegerField()
     date = models.DateField(null=True, blank=True)
+    paid_date=models.DateField(null=True, blank=True)
     code = models.IntegerField(null=True, blank=True)
     institute = models.ForeignKey(Institute, on_delete=models.CASCADE, null=True, blank=True)
 
