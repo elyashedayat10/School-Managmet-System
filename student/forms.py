@@ -88,3 +88,12 @@ class StudentForm(forms.ModelForm):
         "profile",
         "gender",
     ]
+
+
+class SmsForm(forms.Form):
+    text = forms.CharField()
+    student = forms.ModelChoiceField(queryset=None)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['student'].queryset = Student.objects.all()

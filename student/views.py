@@ -16,7 +16,9 @@ from .forms import (GradeForm, MajorForm, StudentForm, StudentInstallmentForm,
                     StudentSelectForm, StudentGradeUpdateForm)
 from .models import Grade, Installment, Major, Student
 from dateutil.relativedelta import relativedelta
+
 user = get_user_model()
+
 
 class StudentListView(ListView):
     template_name = "student/list.html"
@@ -62,7 +64,7 @@ class StudentCreateView(CreateView):
             phone_number=cd["phone_number"],
             password=cd['national_code'],
         )
-        user_obj.is_student =True
+        user_obj.is_student = True
         user_obj.save()
         new_form.user = user_obj
         new_form.save()
@@ -201,11 +203,12 @@ class InstallmentCreateView(View):
             cd = form.cleaned_data
             installment_count = self.student.total_pay() // cd["count"]
             installment_list = []
-            date=datetime.date.today()
+            date = datetime.date.today()
             for i in range(cd["count"]):
-                month_later = relativedelta(months=i+1)
+                month_later = relativedelta(months=i + 1)
                 installment_list.append(
-                    Installment(student=self.student, amount=installment_count,code=random.randint(111111,999999),date= date + month_later,institute=self.student.institute)
+                    Installment(student=self.student, amount=installment_count, code=random.randint(111111, 999999),
+                                date=date + month_later, institute=self.student.institute)
                 )
             Installment.objects.bulk_create(installment_list)
             messages.success(request, "قسط بندی با موفقیت انجام شد", "btn btn-success")
@@ -227,7 +230,7 @@ class StudentInstallmentUpdateView(View):
     def get(self, request, installment_id):
         installment = get_object_or_404(Installment, id=installment_id)
         installment.paid = True
-        installment.paid_date=datetime.date.today()
+        installment.paid_date = datetime.date.today()
         installment.save()
         messages.success(request, '', 'success')
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
@@ -260,36 +263,39 @@ class StudentSelectView(View):
             print(student_list)
             return redirect("Student:list")
 
+
 class StudentSmsSendView(View):
-    def get(self,request):
-        course=Course.objects.all()
-        return render(request,'student/sms.html',{'course_list':course})
+    def get(self, request):
+        course = Course.objects.all()
+        return render(request, 'student/sms.html', {'course_list': course})
 
-    def post(self,request):
+    def post(self, request):
         print(request.POST)
-        return render(request,'student/sms.html')
+        return render(request, 'student/sms.html')
 
 
+from .forms import SmsForm
 
 
 class StudentSmsSendOnlyView(View):
-    def get(self,request):
-        student=Student.objects.all()
-        return render(request,'student/sms1.html',{'student_list':student})
-    def post(self,request):
-            print(request.POST)
-            return render(request,'student/sms1.html')
+    def get(self, request):
+        student = Student.objects.all()
+        return render(request, 'student/sms1.html', {'student_list': student, 'form': SmsForm()})
+
+    def post(self, request):
+        print(request.POST)
+        return render(request, 'student/sms1.html')
+
 
 class StudentSmsSendMajorView(View):
-    def get(self,request):
-        grade=Grade.objects.all()
-        major=Major.objects.all()
-        return render(request,'student/sms2.html',{'grade_list':grade,'major_list':major})
+    def get(self, request):
+        grade = Grade.objects.all()
+        major = Major.objects.all()
+        return render(request, 'student/sms2.html', {'grade_list': grade, 'major_list': major})
 
-    def post(self,request):
-            print(request.POST)
-            return render(request,'student/sms2.html')
-
+    def post(self, request):
+        print(request.POST)
+        return render(request, 'student/sms2.html')
 
 
 class MajorDeleteView(View):

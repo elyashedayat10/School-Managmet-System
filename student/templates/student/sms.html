@@ -52,7 +52,7 @@
     <label for="exampleFormControlSelect1">کلاسی که میخواهید برای دانش آموزان آن کلاس پیام ارسال شود را انتخاب کنید</label>
     <select class="form-control" id="exampleFormControlSelect1">
       {% for course in course_list %}
-      <option>{{ course }}</option>
+      <option name="{{ course }}">{{ course }}</option>
       {% endfor %}
     </select>
   </div>

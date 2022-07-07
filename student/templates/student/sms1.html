@@ -9,8 +9,8 @@
             <div class="content-header">
                 <div class="d-flex align-items-center">
                     <div class="mr-auto">
-                      <h3 class="page-title">
-                        ارسال پیام برای دانش آموزان
+                        <h3 class="page-title">
+                            ارسال پیام برای دانش آموزان
                         </3>
                         <div class="d-inline-block align-items-center">
                             <nav>
@@ -38,42 +38,37 @@
                             <div class="box-body">
 
 
+{#                                <form method="post" action=''>#}
+{#                                    {% csrf_token %}#}
+{##}
+{##}
+{#                                    <div class="form-group">#}
+{#                                        <label for="exampleFormControlSelect2">دانش آموزانی که میخواهید برای ان ها پیام#}
+{#                                            اسال شود را انتخاب کنید</label>#}
+{#                                        <select multiple class="form-control" id="exampleFormControlSelect2">#}
+{#                                            {% for course in student_list %}#}
+{#                                                <input type="checkbox" value="{{ course }}">#}
+{#                                            {% endfor %}#}
+{#                                        </select>#}
+{#                                    </div>#}
+
+                                    <form method="post" action="">
+                                        {% csrf_token %}
+                                        {{ form.student }}
+                                        {{ form.text }}
+                                        <input type="submit" value="{{ course }}">
+                                    </form>
 
 
-
-
-
-
-
-
-<form method="post" action=''>
-  {% csrf_token %}
-
-      
-      
-        <div class="form-group">
-    <label for="exampleFormControlSelect2">دانش آموزانی که میخواهید برای ان ها پیام اسال شود را انتخاب کنید</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2">
-          {% for course in student_list %}
-      <input type="checkbox" value="{{ course }}">
-      {% endfor %}
-    </select>
-  </div>
-      
-      
-      
-      
-      
-      
-      
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">متن پیام خود را برای ارسال وارد کنید
-    <textarea class="form-control" id="exampleFormControlTextarea1"  cols="15" rows="10"></textarea>
-  </div>
-        <input value="ارسال پیام" class="btn-success  form-control "
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">متن پیام خود را برای ارسال وارد کنید
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" cols="15"
+                                                      rows="10"></textarea>
+                                    </div>
+                                    <input value="ارسال پیام" class="btn-success  form-control "
                                            type="submit">
-</form>
-                              </div>
+{#                                </form>#}
+                            </div>
                             <!-- /.box -->
                         </div>
                         <!-- ./col -->
