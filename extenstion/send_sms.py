@@ -1,18 +1,7 @@
-from kavenegar import *
+import requests
 
 
-def send_message(phone_numbers, message):
-    pass
-    # try:
-    #     api = KavenegarAPI('kooft')
-    #     params = {
-    #                  'sender': '',
-    #                  'receptor':,
-    #              'message':'',
-    #     }
-    #     response = api.sms_sendarray(params)
-    #     print(response)
-    # except APIException as e:
-    #     print(e)
-    # except HTTPException as e:
-    #     print(e)
+def send_message(phone_number, message):
+    requests.get(
+        f"http://ws3584.isms.ir/sendWS?username=7bluesky&password=@7BS123456&mobiles[]={phone_number}&body={message}"
+    )

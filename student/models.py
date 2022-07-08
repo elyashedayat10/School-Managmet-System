@@ -21,7 +21,6 @@ class Student(models.Model):
     user = models.OneToOneField(
         user,
         on_delete=models.CASCADE,
-        limit_choices_to='is_student',
         related_name='student',
     )
     father_name = models.CharField(

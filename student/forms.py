@@ -1,6 +1,7 @@
 from django import forms
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+from course.models import Course
 from .models import Grade, Major, Student
 
 
@@ -90,10 +91,31 @@ class StudentForm(forms.ModelForm):
     ]
 
 
-class SmsForm(forms.Form):
-    text = forms.CharField()
-    student = forms.ModelChoiceField(queryset=None)
+class MajorSmsForm(forms.Form):
+    text = forms.CharField(label='متن پیام', widget=forms.Textarea)
+    grade = forms.ModelChoiceField(queryset=None, label='پایه را انتخاب کنید')
+    major = forms.ModelChoiceField(queryset=None, label='رشته را انتخاب کنید')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['grade'].queryset = Grade.objects.all()
+        self.fields['major'].queryset = Major.objects.all()
+
+
+class StudentSmsForm(forms.Form):
+    text = forms.CharField(label='متن پیام', widget=forms.Textarea())
+    student = forms.ModelMultipleChoiceField(queryset=None, label='انتخاب دانش آموزان')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['student'].queryset = Student.objects.all()
+
+
+class ClassSmsForm(forms.Form):
+    text = forms.CharField(label='متن پیام', widget=forms.Textarea())
+    course = forms.ModelChoiceField(queryset=None,
+                                    label='کلاس را انتخاب کنید')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['course'].queryset = Course.objects.all()

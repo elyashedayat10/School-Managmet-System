@@ -264,38 +264,46 @@ class StudentSelectView(View):
             return redirect("Student:list")
 
 
-class StudentSmsSendView(View):
+from .forms import MajorSmsForm, StudentSmsForm, ClassSmsForm
+
+
+class StudentClassSmsSendView(View):
     def get(self, request):
-        course = Course.objects.all()
-        return render(request, 'student/sms.html', {'course_list': course})
+        return render(request, 'student/sms.html', {'form': ClassSmsForm()})
 
     def post(self, request):
-        print(request.POST)
-        return render(request, 'student/sms.html')
-
-
-from .forms import SmsForm
+        course = request.POST.get('course')
+        course_obj = Course.objects.get(id=int(course))
+        course_student = course_obj.participation.all()
+        for student in course_student:
+            student_info = Student.objects.get(id=student.id)
+            send_message(student_info.user.phone_number, request.POST.get('text'))
+        return redirect('config:Panel')
 
 
 class StudentSmsSendOnlyView(View):
     def get(self, request):
-        student = Student.objects.all()
-        return render(request, 'student/sms1.html', {'student_list': student, 'form': SmsForm()})
+        return render(request, 'student/sms1.html', {'form': StudentSmsForm()})
 
     def post(self, request):
-        print(request.POST)
-        return render(request, 'student/sms1.html')
+        request.POST.get('student')
+        for i in request.POST.get('student'):
+            student_phone = Student.objects.get(id=int(i))
+            send_message(student_phone.user.phone_number, request.POST.get('text'))
+        return redirect('config:Panel')
 
 
 class StudentSmsSendMajorView(View):
     def get(self, request):
-        grade = Grade.objects.all()
-        major = Major.objects.all()
-        return render(request, 'student/sms2.html', {'grade_list': grade, 'major_list': major})
+        return render(request, 'student/sms2.html', {'form': MajorSmsForm()})
 
     def post(self, request):
-        print(request.POST)
-        return render(request, 'student/sms2.html')
+        grade, major = request.POST.get('grade'), request.POST.get('major')
+        student_list = Student.objects.filter(grade_id=int(grade), major_id=int(major))
+        for student in student_list:
+            student_info = Student.objects.get(id=student.id)
+            send_message(student_info.user.phone_number, request.POST.get('text'))
+        return redirect('config:Panel')
 
 
 class MajorDeleteView(View):

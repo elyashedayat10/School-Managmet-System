@@ -1,4 +1,5 @@
 {% extends  'base.html' %}
+{% load widget_tweaks %}
 {% block content %}
 
 
@@ -35,39 +36,27 @@
                             <div class="box-header">
                                 <h4 class="box-title">ارسال پیام برای دانش آموزان</h4>
                             </div>
-                            <div class="box-body">
 
 
-{#                                <form method="post" action=''>#}
-{#                                    {% csrf_token %}#}
-{##}
-{##}
-{#                                    <div class="form-group">#}
-{#                                        <label for="exampleFormControlSelect2">دانش آموزانی که میخواهید برای ان ها پیام#}
-{#                                            اسال شود را انتخاب کنید</label>#}
-{#                                        <select multiple class="form-control" id="exampleFormControlSelect2">#}
-{#                                            {% for course in student_list %}#}
-{#                                                <input type="checkbox" value="{{ course }}">#}
-{#                                            {% endfor %}#}
-{#                                        </select>#}
-{#                                    </div>#}
+                                  <div class="box-body">
 
-                                    <form method="post" action="">
-                                        {% csrf_token %}
-                                        {{ form.student }}
-                                        {{ form.text }}
-                                        <input type="submit" value="{{ course }}">
-                                    </form>
-
-
-                                    <div class="form-group">
-                                        <label for="exampleFormControlTextarea1">متن پیام خود را برای ارسال وارد کنید
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" cols="15"
-                                                      rows="10"></textarea>
+                                <form method="post" action="" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="form-group row">
+                                        {% for field in form.visible_fields %}
+                                            <label class="col-form-label col-md-2">{{ field.label }}</label>
+                                            {{ field|add_class:'form-control' }}
+                                            {% for error in field.errors %}
+                                                <span class="help-block">{{ error }}</span>
+                                            {% endfor %}
+                                        {% endfor %}
                                     </div>
-                                    <input value="ارسال پیام" class="btn-success  form-control "
+                                    <input value="ازسال پیام" class="btn-success  form-control "
                                            type="submit">
-{#                                </form>#}
+
+                                </form>
+                            </div>
+
                             </div>
                             <!-- /.box -->
                         </div>

@@ -1,4 +1,5 @@
 {% extends  'base.html' %}
+{% load widget_tweaks %}
 {% block content %}
 
 
@@ -9,9 +10,9 @@
             <div class="content-header">
                 <div class="d-flex align-items-center">
                     <div class="mr-auto">
-                      <h3 class="page-title">
-                        ارسال پیام برای دانش آموزان
-                        </3>
+                        <h3 class="page-title">
+                              ارسال پیام برای دانش آموزان طبق کلاس
+                        </h3>
                         <div class="d-inline-block align-items-center">
                             <nav>
                                 <ol class="breadcrumb">
@@ -37,33 +38,22 @@
                             </div>
                             <div class="box-body">
 
-
-
-
-
-
-
-
-
-
-<form method="post" action=''>
-  {% csrf_token %}
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">کلاسی که میخواهید برای دانش آموزان آن کلاس پیام ارسال شود را انتخاب کنید</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      {% for course in course_list %}
-      <option name="{{ course }}">{{ course }}</option>
-      {% endfor %}
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">متن پیام خود را برای ارسال وارد کنید
-    <textarea class="form-control" id="exampleFormControlTextarea1"  cols="15" rows="10"></textarea>
-  </div>
-        <input value="ارسال پیام" class="btn-success  form-control "
+                                <form method="post" action="" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="form-group row">
+                                        {% for field in form.visible_fields %}
+                                            <label class="col-form-label col-md-2">{{ field.label }}</label>
+                                            {{ field|add_class:'form-control' }}
+                                            {% for error in field.errors %}
+                                                <span class="help-block">{{ error }}</span>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </div>
+                                    <input value="ازسال پیام" class="btn-success  form-control "
                                            type="submit">
-</form>
-                              </div>
+
+                                </form>
+                            </div>
                             <!-- /.box -->
                         </div>
                         <!-- ./col -->
