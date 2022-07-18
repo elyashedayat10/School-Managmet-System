@@ -60,9 +60,10 @@ class StudentForm(forms.ModelForm):
             "mother_phone_numer",
             "home_number",
             "grade",
-            "profile",
             "gender",
             "institute",
+            "fee",
+            "academic_year",
         )
         labels = {
             "father_name": "نام پدر",
@@ -70,9 +71,13 @@ class StudentForm(forms.ModelForm):
             "mother_phone_numer": "شماره تلفن مادر",
             "home_number": "شماره منزل",
             "grade": "پایه",
-            "profile": "تصویر پروفایل",
             "gender": "جنسیت",
             "institute": "آموزشگاه",
+            "fee": "شهریه",
+            "academic_year": "سال تحصیلی",
+        }
+        widgets = {
+            'fee': forms.NumberInput(attrs={'class': 'form-control'})
         }
 
     field_order = [
@@ -88,6 +93,7 @@ class StudentForm(forms.ModelForm):
         "institute",
         "profile",
         "gender",
+        "academic_year",
     ]
 
 

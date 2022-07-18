@@ -5,7 +5,7 @@ from django.db.models import Sum
 from django.db.models.signals import post_save
 from django.urls import reverse
 from django.utils.text import slugify
-
+from academicyear.models import AcademicYear
 from extenstion.utils import CustomCharField, get_file_path
 from institute.models import Institute
 
@@ -47,9 +47,6 @@ class Student(models.Model):
         blank=True,
         null=True,
     )
-    profile = models.ImageField(
-        upload_to=get_file_path,
-    )
     gender = models.CharField(
         max_length=4,
         choices=GENDER,
@@ -61,7 +58,8 @@ class Student(models.Model):
         null=True,
         blank=True,
     )
-    image = models.ImageField(upload_to=get_file_path, blank=True)
+    fee = models.PositiveBigIntegerField(blank=True, null=True)
+    academic_year = models.ManyToManyField(AcademicYear, related_name='students')
 
     def __str__(self):
         return f"{self.user}-{self.institute}"
@@ -69,9 +67,11 @@ class Student(models.Model):
     def get_absolute_url(self):
         return reverse("Student:detail", args=[self.pk])
 
+    @property
     def total_pay(self):
-        total_paying_estimate = self.part.filter(is_active=True).aggregate(Sum("fee"))["fee__sum"]
-        return total_paying_estimate
+        # total_paying_estimate = self.part.filter(is_active=True).aggregate(Sum("fee"))["fee__sum"]
+        # return total_paying_estimate
+        return self.fee
 
     def get_course_count(self):
         course_count = self.part.all().only("id").count()
@@ -89,9 +89,11 @@ class Installment(models.Model):
     )
     amount = models.IntegerField()
     date = models.DateField(null=True, blank=True)
-    paid_date=models.DateField(null=True, blank=True)
+    paid_date = models.DateField(null=True, blank=True)
     code = models.IntegerField(null=True, blank=True)
     institute = models.ForeignKey(Institute, on_delete=models.CASCADE, null=True, blank=True)
+    academic_year = models.ForeignKey(AcademicYear, related_name='installments', on_delete=models.CASCADE, null=True,
+                                      blank=True)
 
 
 class BaseEducation(models.Model):

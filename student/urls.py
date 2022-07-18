@@ -1,11 +1,13 @@
 from django.urls import path
 
 from .views import (GradeCreateView, GradeDeleteView, GradeDetailView,
-                    GradeListView, GradeUpdateView, StudentSmsSendMajorView,InstallmentCreateView,
+                    GradeListView, GradeUpdateView, StudentSmsSendMajorView, InstallmentCreateView,
                     MajorCreateView, MajorDeleteView, MajorUpdateView,
                     StudentCreateView, StudentDeleteView, StudentDetailView,
                     StudentInstallmentListView, StudentInstallmentUpdateView,
-                    StudentListView, StudentSelectView, StudentUpdateView, StudentProfileView, UploadStudentProfileView,StudentClassSmsSendView,StudentSmsSendOnlyView)
+                    StudentListView, StudentSelectView, StudentUpdateView, StudentProfileView,
+                    UploadStudentProfileView, StudentClassSmsSendView, StudentSmsSendOnlyView,
+                    )
 
 app_name = "Student"
 
@@ -31,8 +33,8 @@ urlpatterns = [
          name='student_insallmet_update'),
     path('profile/', StudentProfileView.as_view(), name='profile'),
     path('uploade/<int:id>/', UploadStudentProfileView.as_view(), name='upload_profile'),
-    path('sms/',StudentClassSmsSendView.as_view(),name='sms'),
-  path('sms1/',StudentSmsSendOnlyView.as_view(),name='sms1'),
-  path('sms2/',StudentSmsSendMajorView.as_view(),name='sms2')
-  
+    path('sms/', StudentClassSmsSendView.as_view(), name='sms'),
+    path('sms1/', StudentSmsSendOnlyView.as_view(), name='sms1'),
+    path('sms2/', StudentSmsSendMajorView.as_view(), name='sms2')
+
 ]

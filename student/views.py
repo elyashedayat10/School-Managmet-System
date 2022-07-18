@@ -185,7 +185,7 @@ class GradeDeleteView(View):
         messages.success(request, "پایه با موفقیت حذف شد", "btn btn-success")
         return redirect("Student:grade_list")
 
-
+from django.db.models import Sum
 class InstallmentCreateView(View):
     template_name = "student/installment.html"
     form_class = StudentInstallmentForm
@@ -200,21 +200,44 @@ class InstallmentCreateView(View):
     def post(self, request, student_id):
         form = self.form_class(request.POST)
         if form.is_valid():
+            last_year=self.student.academic_year.last()
             cd = form.cleaned_data
-            installment_count = self.student.total_pay() // cd["count"]
             installment_list = []
             date = datetime.date.today()
-            for i in range(cd["count"]):
-                month_later = relativedelta(months=i + 1)
-                installment_list.append(
-                    Installment(student=self.student, amount=installment_count, code=random.randint(111111, 999999),
-                                date=date + month_later, institute=self.student.institute)
-                )
-            Installment.objects.bulk_create(installment_list)
-            messages.success(request, "قسط بندی با موفقیت انجام شد", "btn btn-success")
-            return redirect("Student:detail", student_id)
+            user_installment=Installment.objects.filter(student_id=self.student.id,academic_year=last_year)
+            if user_installment:
+                last_installment=user_installment.last()
+                pay=user_installment.all().aggregate(Sum('amount'))['amount__sum']
+                remain=self.student.total_pay-pay
+                if remain != 0:
+                    installment_count=remain // cd['count']
+                    for i in range(cd["count"]):
+                        month_later = relativedelta(months=i + 1)
+                        installment_list.append(
+                            Installment(student=self.student, amount=installment_count, code=random.randint(111111, 999999),
+                                        date=last_installment.date + month_later, institute=self.student.institute,
+                                        academic_year=self.student.academic_year.last())
+                        )
+                    Installment.objects.bulk_create(installment_list)
+                    messages.success(request, "قسط بندی با موفقیت انجام شد", "btn btn-success")
+                    return redirect("Student:detail", student_id)
+                messages.success(request, "مبلغ قایل قسط بنذی نمیباشد", "btn btn-danger")
+                return redirect("Student:detail", student_id)
+
+            else:
+                installment_count = self.student.total_pay // cd["count"]
+                for i in range(cd["count"]):
+                    month_later = relativedelta(months=i + 1)
+                    installment_list.append(
+                        Installment(student=self.student, amount=installment_count, code=random.randint(111111, 999999),
+                                    date=date + month_later, institute=self.student.institute,academic_year=self.student.academic_year.last())
+                    )
+                Installment.objects.bulk_create(installment_list)
+                messages.success(request, "قسط بندی با موفقیت انجام شد", "btn btn-success")
+                return redirect("Student:detail", student_id)
         messages.error(request, "خطا در انجام عملیات", "btn btn-danger")
         return render(request, self.template_name, {"form": self.form_class})
+
 
 
 class StudentInstallmentListView(ListView):

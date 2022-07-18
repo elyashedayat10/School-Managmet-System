@@ -42,9 +42,6 @@ class Course(models.Model):
         related_name="courses",
         verbose_name="استاد",
     )
-    fee = models.PositiveIntegerField(
-        verbose_name="شهریه",
-    )
     status = models.CharField(
         max_length=15, choices=STATUS, verbose_name="وضعیت کلاس", default="شروع نشده"
     )

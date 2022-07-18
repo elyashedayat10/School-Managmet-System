@@ -12,10 +12,10 @@ urlpatterns = [
     path("account/", include("account.urls", namespace="account")),
     path("student/", include("student.urls", namespace="Student")),
     path("institute/", include("institute.urls", namespace="Institute")),
+    path("year/", include('academicyear.urls', namespace='academic_year')),
     path("", include("config.urls", namespace="config")),
     path("ckeditor/", include("ckeditor_uploader.urls")),
     path('__debug__/', include('debug_toolbar.urls')),
-
 ]
 if settings.DEBUG:
     # ADD ROOT MEDIA FILES

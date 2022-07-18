@@ -108,7 +108,21 @@
                     </li>
                 </ul>
             </li>
-
+            <li class="treeview">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+                    <span>سال تحصیلی</span>
+                    <span class="pull-right-container">
+								<i class="fa fa-angle-right pull-right"></i>
+							</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url "academic_year:list" %}"><i class="ti-more"></i>
+                        سال های تحصیلی</a></li>
+                    <li><a href="{% url "academic_year:create" %}"><i class="ti-more"></i>افزودن سال جدید</a>
+                    </li>
+                </ul>
+            </li>
 
             <li class="treeview">
                 <a href="#">
@@ -137,13 +151,13 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{% url "Student:sms" %}"><i class="ti-more"></i>
-                      ارسال پیام (کلاس)</a></li>
-	     <li><a href="{% url "Student:sms1" %}"><i class="ti-more"></i>
+                        ارسال پیام (کلاس)</a></li>
+                    <li><a href="{% url "Student:sms1" %}"><i class="ti-more"></i>
                         ارسال پیام</a></li>
-			     <li><a href="{% url "Student:sms2" %}"><i class="ti-more"></i>
+                    <li><a href="{% url "Student:sms2" %}"><i class="ti-more"></i>
                         ارسال (رشته)</a></li>
-<!--                     <li><a href="{% url "Student:select" %}"><i class="ti-more"></i>پیام های ارسال شدع</a> -->
-<!--                     </li> -->
+                    <!--                     <li><a href="{% url "Student:select" %}"><i class="ti-more"></i>پیام های ارسال شدع</a> -->
+                    <!--                     </li> -->
                 </ul>
             </li>
 
