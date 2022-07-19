@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load jformat %}
 {% block content %}
     <div class="wrapper">
 
@@ -71,7 +72,7 @@
                                             <th>وضعیت</th>
                                             <th>کد پرداخت</th>
                                             <th>تاریخ پزداخت</th>
-
+                                            <th>تاریخ سررسید</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -88,7 +89,8 @@
                                                 {% endif %}
                                                 </td>
                                             <td>{% if student.paid %} {{ student.code }} {% endif %}</td>
-                                            <td>{{ student.paid_date }}</td>
+                                            <td>{{ student.paid_date | jformat:"%d %Y %B " }}</td>
+                                            <td>{{ student.date | jformat:"%d %Y %B " }}</td>
                                             </tr>
 
                                          {% empty %}

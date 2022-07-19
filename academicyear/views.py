@@ -3,6 +3,7 @@ from .models import AcademicYear
 from .forms import AcademicYearForm
 from django.views.generic import CreateView, ListView, View
 from django.urls import reverse_lazy
+from institute.models import Institute
 
 
 # Create your views here.
@@ -25,3 +26,10 @@ class AcademicYearDeleteView(View):
         academic_year = get_object_or_404(AcademicYear, pk=pk)
         academic_year.delete()
         return redirect('')
+
+
+class InstituteAcademicYearView(View):
+    def get(self, request, *args, **kwargs):
+        institute_id = kwargs.get('id')
+        obj=AcademicYear.objects.filter(institute=institute_id)
+        return render(request, 'academicyear/institute.html', {'object': obj})

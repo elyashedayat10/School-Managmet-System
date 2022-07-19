@@ -190,6 +190,7 @@
                                                 {#                                                {% for course in object.courses.all %}#}
                                                 <h3>تعداد کلاس ها:{{ object.get_course_count }}</h3>
                                                 <h3>مجموع قابل پرداخت:{{ object.total_pay }}</h3>
+                                                <a class="btn btn-danger" href="{% url "Student:handy" object.id %}">پرداخت دستی شهریه</a>
                                                 <a class="btn btn-primary"
                                                    href="{% url 'Student:installmentcreateview' object.id %}">قسط
                                                     بندی</a>

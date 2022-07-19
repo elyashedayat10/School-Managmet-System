@@ -125,3 +125,7 @@ class ClassSmsForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['course'].queryset = Course.objects.all()
+
+
+class StudentInstallmentHandForm(forms.Form):
+    amount = forms.IntegerField(label='مقدار پرداختی را انتخاب کنید')

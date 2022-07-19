@@ -13,7 +13,7 @@ from extenstion.send_sms import send_message
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .filters import StudentFilter
 from .forms import (GradeForm, MajorForm, StudentForm, StudentInstallmentForm,
-                    StudentSelectForm, StudentGradeUpdateForm)
+                    StudentSelectForm, StudentGradeUpdateForm, StudentInstallmentHandForm)
 from .models import Grade, Installment, Major, Student
 from dateutil.relativedelta import relativedelta
 
@@ -83,6 +83,16 @@ class StudentUpdateView(UpdateView):
     template_name = "student/update.html"
     slug_field = "id"
     slug_url_kwarg = "id"
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial['phone_number'] = self.object.user.phone_number
+        initial['last_name'] = self.object.user.last_name
+        initial['first_name'] = self.object.user.first_name
+        initial['national_code'] = self.object.user.national_code
+        return initial
+
+
 
     def form_invalid(self, form):
         new_form = form.save(commit=False)
@@ -185,7 +195,10 @@ class GradeDeleteView(View):
         messages.success(request, "پایه با موفقیت حذف شد", "btn btn-success")
         return redirect("Student:grade_list")
 
+
 from django.db.models import Sum
+
+
 class InstallmentCreateView(View):
     template_name = "student/installment.html"
     form_class = StudentInstallmentForm
@@ -200,21 +213,22 @@ class InstallmentCreateView(View):
     def post(self, request, student_id):
         form = self.form_class(request.POST)
         if form.is_valid():
-            last_year=self.student.academic_year.last()
+            last_year = self.student.academic_year.last()
             cd = form.cleaned_data
             installment_list = []
             date = datetime.date.today()
-            user_installment=Installment.objects.filter(student_id=self.student.id,academic_year=last_year)
+            user_installment = Installment.objects.filter(student_id=self.student.id, academic_year=last_year)
             if user_installment:
-                last_installment=user_installment.last()
-                pay=user_installment.all().aggregate(Sum('amount'))['amount__sum']
-                remain=self.student.total_pay-pay
+                last_installment = user_installment.last()
+                pay = user_installment.all().aggregate(Sum('amount'))['amount__sum']
+                remain = self.student.total_pay - pay
                 if remain != 0:
-                    installment_count=remain // cd['count']
+                    installment_count = remain // cd['count']
                     for i in range(cd["count"]):
                         month_later = relativedelta(months=i + 1)
                         installment_list.append(
-                            Installment(student=self.student, amount=installment_count, code=random.randint(111111, 999999),
+                            Installment(student=self.student, amount=installment_count,
+                                        code=random.randint(111111, 999999),
                                         date=last_installment.date + month_later, institute=self.student.institute,
                                         academic_year=self.student.academic_year.last())
                         )
@@ -230,7 +244,8 @@ class InstallmentCreateView(View):
                     month_later = relativedelta(months=i + 1)
                     installment_list.append(
                         Installment(student=self.student, amount=installment_count, code=random.randint(111111, 999999),
-                                    date=date + month_later, institute=self.student.institute,academic_year=self.student.academic_year.last())
+                                    date=date + month_later, institute=self.student.institute,
+                                    academic_year=self.student.academic_year.last())
                     )
                 Installment.objects.bulk_create(installment_list)
                 messages.success(request, "قسط بندی با موفقیت انجام شد", "btn btn-success")
@@ -238,6 +253,38 @@ class InstallmentCreateView(View):
         messages.error(request, "خطا در انجام عملیات", "btn btn-danger")
         return render(request, self.template_name, {"form": self.form_class})
 
+
+class InstallmentHandyCreateView(View):
+    template_name = "student/installmenthand.html"
+    form_class = StudentInstallmentHandForm
+
+    def setup(self, request, *args, **kwargs):
+        self.student = get_object_or_404(Student, id=kwargs.get('student_id'))
+        super(InstallmentHandyCreateView, self).setup(request, *args, **kwargs)
+
+    def get(self, request, student_id):
+        return render(request, self.template_name, {"form": self.form_class, 'object': self.student})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            student_installment = self.student.installment.filter(academic_year=self.student.academic_year.last()).aggregate(Sum('amount'))['amount__sum']
+            if student_installment:
+                date_of_last = student_installment.last()
+                pay_date = date_of_last + relativedelta(months=+1)
+                Installment.objects.create(amount=form.cleaned_data['amount'], student_id=self.student.id,
+                                       institute=self.student.institute, code=random.randint(111111, 999999),
+                                       date=pay_date,paid_date=pay_date,paid=True)
+                return redirect("Student:detail", self.student.id)
+            else:
+                pay_date = datetime.date.today()
+                Installment.objects.create(amount=form.cleaned_data['amount'], student_id=self.student.id,
+                                           institute=self.student.institute, code=random.randint(111111, 999999),
+                                           date=pay_date,paid_date=pay_date)
+                return redirect("Student:detail", self.student.id)
+        # else:
+        #     return redirect("Student:detail", self.student.id)
+        return render(request, self.template_name, {'form': self.form_class, 'object': self.student})
 
 
 class StudentInstallmentListView(ListView):

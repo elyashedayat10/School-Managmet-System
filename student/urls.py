@@ -7,7 +7,7 @@ from .views import (GradeCreateView, GradeDeleteView, GradeDetailView,
                     StudentInstallmentListView, StudentInstallmentUpdateView,
                     StudentListView, StudentSelectView, StudentUpdateView, StudentProfileView,
                     UploadStudentProfileView, StudentClassSmsSendView, StudentSmsSendOnlyView,
-                    )
+                    InstallmentHandyCreateView, )
 
 app_name = "Student"
 
@@ -35,6 +35,7 @@ urlpatterns = [
     path('uploade/<int:id>/', UploadStudentProfileView.as_view(), name='upload_profile'),
     path('sms/', StudentClassSmsSendView.as_view(), name='sms'),
     path('sms1/', StudentSmsSendOnlyView.as_view(), name='sms1'),
-    path('sms2/', StudentSmsSendMajorView.as_view(), name='sms2')
+    path('sms2/', StudentSmsSendMajorView.as_view(), name='sms2'),
+    path('installment_handy/<int:student_id>/', InstallmentHandyCreateView.as_view(), name='handy')
 
 ]
