@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +25,7 @@
 <body class="hold-transition light-skin sidebar-mini theme-primary rtl">
 <div class="wrapper">
 
-    <header class="main-header">
+     <header class="main-header">
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top pl-30">
             <!-- Sidebar toggle button-->
@@ -82,16 +83,40 @@
 
                         <div class="box">
                             <div class="box-header with-border">
-                                <h3 class="box-title">ذرآمد سالیانه </h3>
+                                <h3 class="box-title">لیست اقساط امسال</h3>
                                 <h6 class="box-subtitle">
                                 </h6>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
-                                <div class="card">
-                                    <div class="card-body">
-                                        درآمد سالیانه {{ installment_list }} ریال
-                                    </div>
+                                <div class="table-responsive">
+                                    <table id="example"
+                                           class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                                        <thead>
+                                        <tr>
+                                            <th>نام و نام خانوادگی</th>
+                                            <th>مبلغ</th>
+                                            <th>وضعیت پرداخت</th>
+                                            <th> شماره تماس</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                         {% for admin in object_list %}
+                                            <tr>
+                                                <td>{{ admin.student }}</td>
+                                                <td>{{ admin.amount }} ریال</td>
+                                                <td class="btn btn-danger">پرداخت نشده</td>
+                                                    <td class="btn btn-danger">{{ admin.student }}</td>
+
+
+
+                 </tr>
+                 {% empty %}
+                                            <h1>قسط پرداخت نشده ای وجود ندارد</h1>
+                {% endfor %}
+
+
+                                    </table>
                                 </div>
                             </div>
                             <!-- /.box-body -->
