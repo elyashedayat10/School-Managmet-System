@@ -102,9 +102,7 @@ class StudentUpdateView(UpdateView):
         messages.success(self.request, "", "btn btn-success")
         return super(StudentUpdateView, self).form_invalid(form)
 
-    def form_valid(self, form):
-        messages.success()
-        return super(StudentUpdateView, self).form_valid(form)
+
 
 
 class GradeListView(ListView):
