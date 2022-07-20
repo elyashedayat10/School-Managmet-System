@@ -1,5 +1,6 @@
 {% load static %}
 {% load widget_tweaks %}
+{% load jformat %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,7 +57,7 @@
             <div class="content-header">
                 <div class="d-flex align-items-center">
                     <div class="mr-auto">
-                        <h3 class="page-title">سال های مالی آموزشگاه {{ institute }}</h3>
+                        <h3 class="page-title">جزییات اقساط آموزشگاه{{ institute_obj }}</h3>
                         <div class="d-inline-block align-items-center">
                             <nav>
                                 <ol class="breadcrumb">
@@ -79,7 +80,10 @@
                     <div class="col-12">
                         <div class="box">
                             <div class="box-header with-border">
-                                <h3 class="box-title">سال های مالی</h3>
+                                <h3 class="box-title">مبلغ قابل پرداخت:{{ total_pay }},</h3>
+                                <h3 class="box-title">تعداد اقساط:{{ count }},</h3>
+                                <h3 class="box-title text-success">مجموع پرداختی:{{ paid }},</h3>
+                                <h3 class="box-title text-danger">مجموع پرداختی:{{ unpaid }}</h3>
                                 <h6 class="box-subtitle">
                                 </h6>
                             </div>
@@ -91,25 +95,31 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>سال تحصیلی</th>
-                                            <th>تعداد دانش آموز</th>
-                                            <th>مجموع شهریه</th>
-                                            <th>شهریه دریافت شده</th>
-                                            <th>مشاهده جزییات</th>
+                                            <th>نام دانش آموز</th>
+                                            <th>شماره تماس دانش آموز</th>
+                                            <th>مبلغ</th>
+                                            <th>شماره پرداخت</th>
+                                            <th>تاریخ پرداخت</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for year in  object %}
+                                        {% for object in total  %}
                                             <tr>
                                                 <td>{{ forloop.counter }}</td>
-                                                <td>{{ year.title }}</td>
-                                                <td>{{ year.get_student_count }}</td>
-                                                <td>{{ year.get_total_paid }}</td>
-                                                <td>{{ year.get_unpaid }}</td>
-                                                <td><a href="{% url "academic_year:paid_archive" year.institute.id year.id %}" class="btn btn-primary">نمایش جزییات پرذاخت ها</a></td>
+                                                <td>{{ object.student }}</td>
+                                                <td>{{ object.student.user.phone_number }}</td>
+                                                <td>{{ object.amount }}</td>
+                                                <td>{{ object.code }}</td>
+                                                <td>{% if object.paid %}
+                                                    {{ object.paid_date | jformat:"%d %Y %B "  }}
+                                                    {% else %}
+                                                    <a class="btn btn-danger"> پرداخت نشده</a>
+                                                    {% endif %}
+                                                </td>
+
                                             </tr>
                                         {% empty %}
-                                            <h1 class="text-center">سال مالی برای آموزشگاه ثبت نشده</h1>
+                                            <h1 class="text-center">هیچ اطلاعاتی برای نمایش وجود ندارد</h1>
                                         {% endfor %}
                                     </table>
                                 </div>
