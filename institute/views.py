@@ -5,6 +5,7 @@ from django.views.generic import (CreateView, DetailView, ListView, UpdateView,
                                   View)
 from django.views.generic.edit import FormMixin
 
+import academicyear.models
 from course.forms import InstituteCourseForm
 
 from .forms import InstituteForm
@@ -97,7 +98,6 @@ class TodayView(View):
 
 class MonthView(View):
     def get(self, request, Institute_id):
-        print(datetime.datetime.today().month)
         installment = Installment.objects.filter(institute_id=Institute_id).filter(
             date__month=datetime.datetime.today().month)
         return render(request, 'institute/month.html', {'installment_list': installment})
@@ -117,13 +117,15 @@ class TotalView(View):
     def get(self, request, Institute_id):
         installment = Installment.objects.filter(institute_id=Institute_id).filter(
             date__year=datetime.datetime.today().year).aggregate(Sum("amount"))["amount__sum"]
-        return render(request, 'institute/', {'installment_list': installment})
+        return render(request, 'institute/year.html', {'installment_list': installment})
 
 
 from django.views.generic.dates import YearArchiveView
 
 
 class YearInstallmentView(View):
-    def get(self,request,year):
-        return render(request,'institute/year_archive.html',{'object_list':Installment.objects.filter(date__year=year)})
-
+    def get(self, request, *args, **kwargs):
+        inst = Institute.objects.get(id=kwargs.get('id'))
+        year = inst.academic_years.last()
+        return render(request, 'institute/year_archive.html',
+                      {'object_list': Installment.objects.filter(institute=inst, year=year)})
