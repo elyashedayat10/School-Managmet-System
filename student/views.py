@@ -278,7 +278,7 @@ class InstallmentHandyCreateView(View):
                 pay_date = datetime.date.today()
                 Installment.objects.create(amount=form.cleaned_data['amount'], student_id=self.student.id,
                                            institute=self.student.institute, code=random.randint(111111, 999999),
-                                           date=pay_date,paid_date=pay_date)
+                                           date=pay_date,paid_date=pay_date,paid=True)
                 return redirect("Student:detail", self.student.id)
         # else:
         #     return redirect("Student:detail", self.student.id)
